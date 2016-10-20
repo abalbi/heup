@@ -1,3 +1,7 @@
 #!/usr/bin/perl
 use strict;
+use lib 'lib';
+use HEUP;
 print "Hello HEUP\n";
+print HEUP->ejecutar;
+print "\n";
