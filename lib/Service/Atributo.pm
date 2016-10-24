@@ -1,18 +1,14 @@
 package Service::Atributo;
 use strict; 
 use JSON;
+use base qw(Service);
 use fields qw(_atributos);
 our $AUTOLOAD;
 use Data::Dumper;
 
-our $instancia;
 
 our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
-	sub instancia {
-		$instancia = __PACKAGE__->new if !$instancia;
-		return $instancia;
-	}
 
 	sub new {
 		my $self = shift;

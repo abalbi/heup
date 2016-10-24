@@ -14,6 +14,7 @@ use Model::Atributo;
 use Model::Personaje;
 use Model::Personaje::Propiedad;
 use Service::Atributo;
+use Service::Personaje;
 
 our $app_path = $ENV{PWD};
 our $bin_path = $app_path.'/bin';
