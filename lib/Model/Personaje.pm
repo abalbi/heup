@@ -4,6 +4,7 @@ use JSON;
 use fields qw(_propiedades);
 our $AUTOLOAD;
 use Data::Dumper;
+use Util;
 
 our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
@@ -20,6 +21,7 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $valor = shift;
     $method =~ s/.*:://;
     my $propiedad = $method;
+    $logger->trace('Buscando metodo ', $method, ' valor: ', l $valor);
     $logger->logconfess("No existe el metodo o atributo '$_[0]'") if $propiedad eq 'propiedad';
     $self->propiedad($propiedad, $valor) if defined $valor;
     return $self->propiedad($propiedad)->valor;
@@ -30,7 +32,9 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $self = shift;
     my $key = shift;
     my $valor = shift;
-    $self->{_propiedades}->{$key} = Personaje::Propiedad->new if not exists $self->{_propiedades}->{$key};
+    if(not exists $self->{_propiedades}->{$key}) {
+      $self->{_propiedades}->{$key} = Personaje::Propiedad->new($key);
+    }
     my $propiedad = $self->{_propiedades}->{$key};
     $propiedad->valor($valor) if defined $valor; 
     return $propiedad;
