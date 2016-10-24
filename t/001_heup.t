@@ -1,4 +1,5 @@
 use strict;
+use lib 'lib';
 use Test::More qw(no_plan);
 use Test::More::Behaviour;
 
