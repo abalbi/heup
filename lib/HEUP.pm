@@ -2,9 +2,6 @@ package HEUP;
 use Data::Dumper;
 use lib 'lib';
 use Log::Log4perl;
-use Exporter;
-use base qw(Exporter);
-our @EXPORT = qw(l);
 
 Log::Log4perl->init("log.conf");
 our $logger = Log::Log4perl->get_logger(__PACKAGE__);
@@ -28,7 +25,4 @@ sub ejecutar {
 	return ':';
 }
 
-sub l {
-	print "asdffasdf";
-}
 1;
