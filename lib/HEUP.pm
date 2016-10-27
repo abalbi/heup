@@ -7,6 +7,7 @@ Log::Log4perl->init("log.conf");
 our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 $logger->level('TRACE');
 
+use Constructor;
 use Model::Atributo;
 use Model::Personaje;
 use Model::Personaje::Propiedad;
