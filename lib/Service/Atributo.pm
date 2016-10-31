@@ -39,19 +39,25 @@ our $stash;
 	}
 
 	sub atributos {
+		my $class = shift;
 		my $self = __PACKAGE__->instancia;
-		return $self->{_atributos};		
+		my $filter = shift;
+		my $atributos = [];
+		if($filter) {
+			foreach my $atributo (@{$self->{_atributos}}) {
+				push @$atributos, $atributo if scalar grep { $filter->{$_} eq $atributo->$_} keys %$filter;
+			}	
+		} else {
+			$atributos = $self->{_atributos};
+		}
+		return $atributos;
 	}
 
 	sub init {
 		my $self = __PACKAGE__->instancia;
 		$logger->info('INIT: inicializando');
 		$self->load_etc;
-#		my $self = __PACKAGE__->instancia;
-#		push @{$self->atributos}, Atributo->new({ key => 'name' });
-#		$logger->info('INIT: Se cargaron los atributos: ', map {$_->key} @{$self->atributos});
 	}
-
 
 	sub traer_o_crear {
 		my $class = shift;
@@ -99,6 +105,7 @@ our $stash;
 	    			my $res = &{$frase->{code}}($args);
 	    			if($res eq '__END__') {
 	    				$logger->debug("Se crea el atributo: ", l $stash);
+	    				$stash->{src} = $file;
 							Service::Atributo->crear($stash);
 	    				$stash = {}
 	    			}

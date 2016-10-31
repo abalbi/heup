@@ -1,9 +1,10 @@
 package Atributo;
 use strict; 
 use JSON;
-use fields qw(_key _es_requerido _posibles _validos);
+use fields qw(_key _es_requerido _posibles _validos _src);
 our $AUTOLOAD;
 use Data::Dumper;
+use Util;
 
 our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
@@ -35,5 +36,14 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 		return $self->{_validos}
 	}
 
+	sub src {
+		my $self = shift;
+		return $self->{_src}
+	}
+
+	sub alguno {
+		my $self = shift;
+		return azar $self->posibles;
+	}
 
 1;

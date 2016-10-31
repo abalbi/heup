@@ -16,8 +16,10 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 	}
 
 	sub crear {
+		my $class = shift;
 		my $self = __PACKAGE__->instancia;
-		my $constructor = Constructor->new;
+		my $args = shift;
+		my $constructor = Constructor->new($args);
 		my $personaje = Personaje->new;
 		$constructor->personaje($personaje);
 		$personaje = $constructor->hacer;
