@@ -22,8 +22,13 @@ chmod 0755, $heup_path if ! -X $heup_path;
 
 Service::Atributo->init;
 
+srand(24170985);
+
 sub ejecutar {
-	return ':';
+	my $class = shift;
+	my $args = shift;
+	my $personaje = Service::Personaje->crear($args);
+	return $personaje->detalle;
 }
 
 1;

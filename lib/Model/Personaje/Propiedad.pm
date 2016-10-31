@@ -37,5 +37,8 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 		return $self->{_valor};		
 	}
 
-
+	sub alguno {
+		my $self = shift;
+		return $self->atributo->alguno;		
+	}
 1;

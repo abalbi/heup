@@ -40,4 +40,8 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     return $propiedad;
   }
 
+  sub detalle {
+    my $self = shift;
+    return $self->name .':';    
+  }
 1;
