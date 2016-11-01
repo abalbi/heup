@@ -77,7 +77,10 @@ our $stash;
 		my $class = shift;
 		my $self = __PACKAGE__->instancia;
 		my $args = shift;
-		my $atributo = Atributo->new($args);
+		my $clase = $args->{clase};
+		delete $args->{clase};
+		$clase = 'Atributo' if !$clase;
+		my $atributo = $clase->new($args);
 		push @{$self->atributos}, $atributo;
 		return $atributo;
 	}
@@ -133,10 +136,25 @@ our $stash;
 				}
 			},
 			{ 
+				re => qr/(?<key>\w+) es de la clase (?<clase>[\w:]+)/,
+				code => sub {
+					my $args = shift;
+					$args->{stash}->{clase} = $args->{clase};
+				}
+			},
+			{ 
 				re => qr/Los valores (?<lista>posibles|validos) de (?<key>\w+) son.*\: (?<valores>[\w ]+)\./i,
 				code => sub {
 					my $args = shift;
 					$args->{stash}->{$args->{lista}} = [split ' ', $args->{valores}];
+				}
+			},
+			{ 
+				re => qr/Los valores (?<lista>posibles|validos) de (?<key>\w+) para personajes de (?<atributo>\w+) '(?<valor>\w+)' son.*\: (?<valores>[\w ]+)\./i,
+				code => sub {
+					my $args = shift;
+					my $valores = [split ' ', $args->{valores}];
+					push @{$args->{stash}->{$args->{lista}}}, map {{ valor => $_ , atributos => {$args->{atributo} => $args->{valor}}}} @$valores;
 				}
 			},
 			{ 

@@ -43,7 +43,7 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 		foreach my $atributo (@$atributos){
 			my $key = $atributo->key;
 			my $valor = $self->argumentos->{$key};
-			$valor = $personaje->propiedad($key)->alguno if not defined $valor;
+			$valor = $personaje->propiedad($key)->alguno($personaje) if not defined $valor;
 			$personaje->$key($valor);
 		}
 		return $personaje;

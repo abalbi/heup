@@ -24,6 +24,7 @@ describe "Como usuario quiero que el personaje tenga un nombre, definido por mi 
         my $per = $constructor->hacer;
         is $per->name, 'Aldo';
         is $personaje->name, 'Aldo';
+        like $personaje->name, qr/^\w+$/;
         cmp_deeply $personaje->sex,  any(@{$atributo_sex->posibles});
 
       };

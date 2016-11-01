@@ -34,6 +34,7 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $valor = shift;
     if(not exists $self->{_propiedades}->{$key}) {
       $self->{_propiedades}->{$key} = Personaje::Propiedad->new($key);
+      $self->{_propiedades}->{$key}->personaje($self);
     }
     my $propiedad = $self->{_propiedades}->{$key};
     $propiedad->valor($valor) if defined $valor; 
