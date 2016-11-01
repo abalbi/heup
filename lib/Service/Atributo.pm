@@ -25,9 +25,6 @@ our $stash;
 		my $self = __PACKAGE__->instancia;
 		my $key = shift;
 		my $atributo = $self->atributo($key);
-		if(!$atributo) {
-			$logger->logdie("No existe el atributo '$key'");
-		}
 		return $atributo;
 	}
 
@@ -80,9 +77,12 @@ our $stash;
 		my $clase = $args->{clase};
 		delete $args->{clase};
 		$clase = 'Atributo' if !$clase;
-		my $atributo = $clase->new($args);
-		push @{$self->atributos}, $atributo;
-		return $atributo;
+		return undef if not defined $args->{key};
+		if(not defined $self->traer($args->{key})) {
+			my $atributo = $clase->new($args);
+			push @{$self->atributos}, $atributo;
+			return $atributo;
+		}
 	}
 
 	sub load_etc {
@@ -146,14 +146,15 @@ our $stash;
 				re => qr/Los valores (?<lista>posibles|validos) de (?<key>\w+) son.*\: (?<valores>[\w ]+)\./i,
 				code => sub {
 					my $args = shift;
-					$args->{stash}->{$args->{lista}} = [split ' ', $args->{valores}];
+					my $valores = frases_parsear_valores($args->{valores});
+					$args->{stash}->{$args->{lista}} = $valores;
 				}
 			},
 			{ 
 				re => qr/Los valores (?<lista>posibles|validos) de (?<key>\w+) para personajes de (?<atributo>\w+) '(?<valor>\w+)' son.*\: (?<valores>[\w ]+)\./i,
 				code => sub {
 					my $args = shift;
-					my $valores = [split ' ', $args->{valores}];
+					my $valores = frases_parsear_valores($args->{valores});
 					push @{$args->{stash}->{$args->{lista}}}, map {{ valor => $_ , atributos => {$args->{atributo} => $args->{valor}}}} @$valores;
 				}
 			},
@@ -165,6 +166,16 @@ our $stash;
 				}
 			},
 		]
+	}
+
+	sub frases_parsear_valores {
+		my $valores = shift;
+		if($valores =~ /(?<min>\d+) a (?<max>\d+)/) {
+			$valores = [$+{min}..$+{max}];
+		} else {
+			$valores = [split ' ', $valores];
+		}
+		return $valores;
 	}
 
 1;
