@@ -1,7 +1,7 @@
 package Personaje::Propiedad;
 use strict; 
 use JSON;
-use fields qw(_valor _key _atributo _personaje);
+use fields qw(_valor _key _atributo _personaje _preasignado);
 our $AUTOLOAD;
 use Data::Dumper;
 
@@ -47,5 +47,13 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 	sub alguno {
 		my $self = shift;
 		return $self->atributo->alguno($self);
+	}
+
+	sub preasignado {
+		my $self = shift;
+		my $preasignado = shift;
+		$self->{_preasignado} = $preasignado if defined $preasignado;
+		return $self->{_preasignado};		
+
 	}
 1;

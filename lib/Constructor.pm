@@ -42,9 +42,21 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 		my $atributos = $self->atributos;
 		foreach my $atributo (@$atributos){
 			my $key = $atributo->key;
-			my $valor = $self->argumentos->{$key};
-			$valor = $personaje->propiedad($key)->alguno($personaje) if not defined $valor;
+      my $valor = $self->argumentos->{$key};
+      $valor = $personaje->propiedad($key)->preasignado if not defined $valor;
+      $valor = $personaje->propiedad($key)->alguno($personaje) if not defined $valor;
 			$personaje->$key($valor);
+      if($atributo->isa('Atributo::Altera')) {
+        foreach my $alter (@{$atributo->alteraciones}) {
+          my $si_key = $alter->{si_key};
+          my $si_valor = $alter->{si_valor};
+          my $entonces_key = $alter->{entonces_key};
+          my $entonces_valor = $alter->{entonces_valor};
+          if($personaje->$si_key eq $si_valor) {
+            $personaje->propiedad($entonces_key)->preasignado($entonces_valor);
+          }
+        }
+      }
 		}
 		return $personaje;
 	}

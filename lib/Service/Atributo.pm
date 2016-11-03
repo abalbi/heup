@@ -165,8 +165,26 @@ our $stash;
 					return '__END__';
 				}
 			},
+      { 
+        re => qr/Los personajes que tiene el (?<si_key>\w+) \'(?<si_valor>\w+)\' siempre tendran (?<entonces_key>\w+) \'(?<entonces_valor>\w+)\'\./i,
+        code => sub {
+          my $args = shift;
+          my $stash = $args->{stash};
+          push @{$stash->{alteraciones}}, hacer_alteracion($args);
+        }
+      },
 		]
 	}
+
+  sub hacer_alteracion {
+    my $args = shift;
+    return {
+      si_key => lc $args->{si_key},
+      si_valor => $args->{si_valor},
+      entonces_key => lc $args->{entonces_key},
+      entonces_valor => $args->{entonces_valor},
+    };
+  }
 
 	sub frases_parsear_valores {
 		my $valores = shift;
