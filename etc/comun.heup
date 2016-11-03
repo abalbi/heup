@@ -12,4 +12,8 @@ Los valores posibles de Name para personajes de sex 'm' son: Hugo Daniel Pablo A
 Age es un atributo que tiene todos los personajes.
 Los valores posibles de Age son: 17 a 40.
 
+= Concept
+Concept es un atributo que tiene todos los personajes.
+Los valores posibles de Age son: criminal jailbird mafioso cat_burglar drug_dealer bandit dilettante artist writer intellectual gambler student drifter hobo cowboy prostitute hermit pilgrim entertainer comic musician movie_star clown investigator detective cop government_agent inquisitor kid child runaway nerd gang_member street_urchin nightlifer clubgoer skinhead punk barfly raver substance_abuser outsider aborigine third_world_resident politician judge mayor senator public_official governor professional engineer doctor mortician scholar punk club_crawler mosher skinhead classic_70s_punk reporter anchorperson newspaper paparazzo town_crier socialite dilettante host playboy sycophant prominent_spouse soldier bodyguard mercenary green_beret knight worker trucker farmer wage_slave servant serf.
+
 = FIN

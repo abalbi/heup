@@ -21,8 +21,8 @@ sub l {
 
 sub azar {
 	my $valor = shift;
-	return int rand $valor + 1 if $valor =~ /^\d+$/;
 	return $valor->[int rand scalar @$valor] if ref $valor eq 'ARRAY'; 
+	return int rand $valor + 1 if $valor =~ /^\d+$/;
 	return undef;
 }
 1;
