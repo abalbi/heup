@@ -9,7 +9,7 @@ $logger->level('TRACE');
 
 use Constructor;
 use Model::Atributo;
-use Model::Atributo::Altera;
+use Model::Atributo::Concept;
 use Model::Atributo::Name;
 use Model::Personaje;
 use Model::Personaje::Propiedad;

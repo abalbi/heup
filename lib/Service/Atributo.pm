@@ -173,6 +173,21 @@ our $stash;
           push @{$stash->{alteraciones}}, hacer_alteracion($args);
         }
       },
+      { 
+        re => qr/Los (?<key>\w+) que heredan de \'(?<valor>\w+)\', que es un de los (?<lista>posibles|validos)\, son.*\: (?<valores>[\w ]+)\./i,        
+        code => sub {
+          my $args = shift;
+          my $stash = $args->{stash};
+          my $lista = $stash->{$args->{lista}};
+          my $valores = frases_parsear_valores($args->{valores});
+          push @$lista, $args->{valor} if not scalar grep {$_ eq lc $args->{valor}} @$lista;
+          foreach my $valor (@$valores) {
+            push @$lista, $valor if not scalar grep {$_ eq lc $valor} @$lista;
+            $stash->{herencias}->{$valor} = [] if !$stash->{herencias}->{$valor};
+            push @{$stash->{herencias}->{$valor}}, $args->{valor};
+          }
+        }
+      },
 		]
 	}
 

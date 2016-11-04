@@ -1,9 +1,11 @@
 = Concept
 Concept es un atributo que tiene todos los personajes.
-Concept es de la clase Atributo::Altera.
-Los valores posibles de Concept son: criminal jailbird mafioso cat_burglar drug_dealer bandit dilettante artist writer intellectual gambler student drifter hobo cowboy prostitute hermit pilgrim entertainer comic musician movie_star clown investigator detective cop government_agent inquisitor kid child runaway nerd gang_member street_urchin nightlifer clubgoer skinhead punk barfly raver substance_abuser outsider aborigine third_world_resident politician judge mayor senator public_official governor professional engineer doctor mortician scholar punk club_crawler mosher skinhead classic_70s_punk reporter anchorperson newspaper paparazzo town_crier socialite dilettante host playboy sycophant prominent_spouse soldier bodyguard mercenary green_beret knight worker trucker farmer wage_slave servant serf sexy_secretary.
+Concept es de la clase Atributo::Concept.
+Los valores posibles de Concept son: criminal jailbird mafioso cat_burglar drug_dealer bandit dilettante artist writer intellectual gambler student drifter hobo cowboy prostitute hermit pilgrim entertainer comic musician movie_star clown investigator detective cop government_agent inquisitor nightlifer clubgoer skinhead punk barfly raver substance_abuser outsider aborigine third_world_resident politician judge mayor senator public_official governor professional engineer doctor mortician scholar punk club_crawler mosher skinhead classic_70s_punk reporter anchorperson newspaper paparazzo town_crier socialite dilettante host playboy sycophant prominent_spouse soldier bodyguard mercenary green_beret knight worker trucker farmer wage_slave servant serf sexy_secretary.
+Los Concept que heredan de 'kid', que es un de los posibles, son: child runaway nerd gang_member street_urchin.
 Los personajes que tiene el Concept 'sex_secretary' siempre tendran Sex 'f'. 
 Los personajes que tiene el Concept 'prostitute' siempre tendran Sex 'f'. 
+Los personajes que tiene el Concept 'kid' siempre tendran Age desde 8 a 17. 
 
 = Sex
 Sex es un atributo que tiene todos los personajes.

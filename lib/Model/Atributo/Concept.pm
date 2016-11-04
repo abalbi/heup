@@ -1,8 +1,8 @@
-package Atributo::Altera;
+package Atributo::Concept;
 use strict; 
 use JSON;
 use base 'Atributo';
-use fields qw( _alteraciones);
+use fields qw( _alteraciones _herencias);
 our $AUTOLOAD;
 use Data::Dumper;
 use Util;
