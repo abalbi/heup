@@ -4,6 +4,7 @@ use JSON;
 use fields qw(_personaje _argumentos _atributos);
 our $AUTOLOAD;
 use Data::Dumper;
+use Util;
 
 our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
@@ -52,7 +53,8 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
           my $si_valor = $alter->{si_valor};
           my $entonces_key = $alter->{entonces_key};
           my $entonces_valor = $alter->{entonces_valor};
-          if($personaje->$si_key eq $si_valor) {
+          if($personaje->es($si_key, $si_valor)) {
+            $entonces_valor = azar $entonces_valor if ref $entonces_valor eq 'ARRAY'; 
             $personaje->propiedad($entonces_key)->preasignado($entonces_valor);
           }
         }
@@ -60,4 +62,5 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 		}
 		return $personaje;
 	}
+
 1;

@@ -45,4 +45,17 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $self = shift;
     return $self->name .':';    
   }
+
+  sub es {
+    my $self = shift;
+    my $propiedad = shift;
+    my $valor_es = shift;
+    my $valor = $self->$propiedad;
+    return 1 if $valor_es eq $valor;
+    if ($self->propiedad($propiedad)->atributo->can('herencia')) {
+      my $herencia = $self->propiedad($propiedad)->atributo->herencia;
+      return 1 if scalar grep {$valor_es eq $_} @{$herencia->{$valor}};
+    }
+    return 0;    
+  }
 1;

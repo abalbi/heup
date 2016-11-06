@@ -12,8 +12,8 @@ describe "Como usuario quiero que los conceptos que defino, alteren el valor a a
   context "CUANDO ejecuto el init del Servicio de Atributo" => sub {
     Service::Atributo->init;
     my $atributo_concept = Service::Atributo->traer('concept');
-    it "ENTONCES el atributo concept sera del tipo Atributo::Altera" => sub {
-      isa_ok $atributo_concept, 'Atributo::Altera'
+    it "ENTONCES el atributo concept sera del tipo Atributo::Concept" => sub {
+      isa_ok $atributo_concept, 'Atributo::Concept'
     };
     it "ENTONCES el atributo tendran alteraciones" => sub {
       cmp_deeply $atributo_concept->alteraciones->[0], {

@@ -16,15 +16,7 @@ describe "Como desarrollador quiero crear relaciones de herencia entre concepts 
       isa_ok $atributo_concept, 'Atributo::Concept'
     };
     it "ENTONCES el atributo tendran alteraciones" => sub {
-      print STDERR Dumper [$atributo_concept->alteraciones];
-      cmp_deeply $atributo_concept->alteraciones, [
-        {
-          si_key => re(qr/\w+/),
-          si_valor => re(qr/\w+/),
-          entonces_key => re(qr/\w+/),
-          entonces_valor => re(qr/\w+/),
-        },
-      ];
+      is scalar(grep {$_->{si_valor} eq 'kid'} @{$atributo_concept->alteraciones}), 1;
     };
   };
   context "DADO un personaje" => sub {

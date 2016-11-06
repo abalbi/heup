@@ -174,6 +174,14 @@ our $stash;
         }
       },
       { 
+        re => qr/Los personajes que tiene el (?<si_key>\w+) \'(?<si_valor>\w+)\' siempre tendran (?<entonces_key>\w+) (?<entonces_valor>desde \d+ a \d+)/i,
+        code => sub {
+          my $args = shift;
+          my $stash = $args->{stash};
+          push @{$stash->{alteraciones}}, hacer_alteracion($args);
+        }
+      },
+      { 
         re => qr/Los (?<key>\w+) que heredan de \'(?<valor>\w+)\', que es un de los (?<lista>posibles|validos)\, son.*\: (?<valores>[\w ]+)\./i,        
         code => sub {
           my $args = shift;
@@ -193,6 +201,11 @@ our $stash;
 
   sub hacer_alteracion {
     my $args = shift;
+    if($args->{entonces_valor} =~ /desde (\d+) a (\d+)/i) {
+      my $desde = $1;
+      my $hasta = $2;
+      $args->{entonces_valor} = [$desde..$hasta];
+    }
     return {
       si_key => lc $args->{si_key},
       si_valor => $args->{si_valor},

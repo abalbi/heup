@@ -14,4 +14,10 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     return $self->{_alteraciones};
   }
 
+  sub herencia {
+    my $self = shift;
+    return $self->{_herencias};
+  }
+
+
 1;
