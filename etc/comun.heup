@@ -1,0 +1,25 @@
+= Concept
+Concept es un atributo que tiene todos los personajes.
+Concept es de la clase Atributo::Concept.
+Los valores posibles de Concept son: criminal jailbird mafioso cat_burglar drug_dealer bandit dilettante artist writer intellectual gambler student drifter hobo cowboy prostitute hermit pilgrim entertainer comic musician movie_star clown investigator detective cop government_agent inquisitor nightlifer clubgoer skinhead punk barfly raver substance_abuser outsider aborigine third_world_resident politician judge mayor senator public_official governor professional engineer doctor mortician scholar punk club_crawler mosher skinhead classic_70s_punk reporter anchorperson newspaper paparazzo town_crier socialite dilettante host playboy sycophant prominent_spouse soldier bodyguard mercenary green_beret knight worker trucker farmer wage_slave servant serf sexy_secretary.
+Los Concept que heredan de 'kid', que es un de los posibles, son: child runaway nerd gang_member street_urchin.
+Los personajes que tiene el Concept 'sex_secretary' siempre tendran Sex 'f'. 
+Los personajes que tiene el Concept 'prostitute' siempre tendran Sex 'f'. 
+Los personajes que tiene el Concept 'kid' siempre tendran Age desde 8 a 17. 
+
+= Sex
+Sex es un atributo que tiene todos los personajes.
+Los valores validos de Sex son: f m.
+
+= Name
+Name es un atributo que tiene todos los personajes.
+Name es de la clase Atributo::Name.
+Los valores posibles de Name para personajes de sex 'f' son: Lucia Maria Martina Paula Daniela Sofia Valeria Carla Sara Alba Julia Noa Emma Claudia Carmen Marta Valentina Irene Adriana Ana Laura Elena Alejandra Ines Marina Vera Candela Laia Ariadna Lola Andrea Rocio Angela Vega Nora Jimena Blanca Alicia Clara Olivia Celia Alma Eva Elsa Leyre Natalia Victoria Isabel Cristina Lara Abril Triana Nuria Aroa Carolina Manuela Chloe Mia Mar Gabriela Mara Africa Iria Naia Helena Paola Noelia Nahia Miriam Salma.
+Los valores posibles de Name para personajes de sex 'm' son: Hugo Daniel Pablo Alejandro Alvaro Adrian David Martin Mario Diego Javier Manuel Lucas Nicolas Marcos Leo Sergio Mateo Izan Alex Iker Marc Jorge Carlos Miguel Antonio Angel Gonzalo Juan Ivan Eric Ruben Samuel Hector Victor Enzo Jose Gabriel Bruno Dario Raul Adam Guillermo Francisco Aaron Jesus Oliver Joel Aitor Pedro Rodrigo Erik Marco Alberto Pau Jaime Asier Luis Rafael Mohamed Dylan Marti Ian Pol Ismael Oscar Andres Alonso Biel Rayan Jan Fernando Thiago Arnau Cristian Gael Ignacio Joan.
+
+= Age
+Age es un atributo que tiene todos los personajes.
+Los valores posibles de Age son: 17 a 40.
+
+
+= FIN

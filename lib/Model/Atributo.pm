@@ -1,71 +1,50 @@
 package Atributo;
-use strict;
-use fields qw(_nombre _validos _es_requerido _posibles);
+use strict; 
+use JSON;
+use fields qw(_key _es_requerido _posibles _validos _src);
+our $AUTOLOAD;
 use Data::Dumper;
 use Util;
 
-our $instancia;
+our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
-sub new {
-	my $self = shift;
-	my $args = shift;
-	$self = fields::new($self);
-	$self->{_nombre} = $args->{nombre};
-	$self->{_es_requerido} = $args->{es_requerido};
-	$self->{_posibles} = $args->{posibles};
-	return $self;
-}
-
-sub nombre {
-	my $self = shift;
-	my $valor = shift;
-	$self->{_nombre} = $valor if defined $valor;
-	return $self->{_nombre};
-}
-
-sub alguno {
-	my $self = shift;
-	my $propiedad = shift;
-	my $valor = shift;
-	return $valor if $propiedad->es_valido($valor);
-	$valor = azar $propiedad->validos;
-	$valor = azar $propiedad->posibles if not defined $valor;
-	return $valor;
-}
-
-sub es_valido {
-	my $self = shift;
-	my $propiedad = shift;
-	my $valor = shift;
-	if(not defined $valor && $propiedad->es_requerido) {
-		return 0;
+	sub new {
+		my $self = shift;
+		my $args = shift;
+		$self = fields::new($self);
+		foreach my $key (keys %$args) {
+			$self->{'_'.$key} = $args->{$key};
+		}
+		return $self;
 	}
-	if(ref $valor ne '') {
-		return 0;
+
+	sub key {return shift->{_key}}
+
+	sub es_requerido {
+		my $self = shift;
+		return $self->{_es_requerido}
 	}
-	return 1;
-}
 
-sub validos {
-	my $self = shift;
-	my $propiedad = shift;
-	my $valor = shift;
-	return $self->{_validos};
-}
+	sub posibles {
+		my $self = shift;
+		return $self->validos if not defined $self->{_posibles};
+		return $self->{_posibles}
+	}
 
-sub posibles {
-	my $self = shift;
-	my $propiedad = shift;
-	my $valor = shift;
-	return &{$self->{_posibles}}($self, $propiedad, $valor) if ref $self->{_posibles} eq 'CODE';
-	return $self->{_posibles};
-}
+	sub validos {
+		my $self = shift;
+		return $self->{_validos}
+	}
+
+	sub src {
+		my $self = shift;
+		return $self->{_src}
+	}
+
+	sub alguno {
+		my $self = shift;
+		return azar $self->posibles;
+	}
 
 
-sub es_requerido {
-	my $self = shift;
-	my $propiedad = shift;
-	my $valor = shift;
-	return $self->{_es_requerido};
-}
 1;

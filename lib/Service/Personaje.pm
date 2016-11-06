@@ -1,48 +1,22 @@
 package Service::Personaje;
-use strict;
-use fields qw(_args _personaje);
+use strict; 
+use JSON;
+use base qw(Service);
+use fields qw();
+our $AUTOLOAD;
 use Data::Dumper;
 
-sub new {
-	my $self = shift;
-	my $args = shift;
-	$self = fields::new($self);
-	return $self;
-}
+our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
-sub crear {
-	my $class = shift;
-	my $args = shift;
-	my $self = $class->new;
-	my $personaje = $args->{personaje} ? $args->{personaje} : Personaje->new;
-  $self->personaje($personaje);
-	$self->args($args);
-	$self->hacer;
-	$self->personaje;
-}
-
-sub args {
-	my $self = shift;
-	my $args = shift;
-	$self->{_args} = {} if not exists $self->{_args};
-	$self->{_args} = $args if defined $args;
-	return $self->{_args};
-}
-
-sub personaje {
-	my $self = shift;
-	my $valor = shift;
-	$self->{_personaje} = $valor if defined $valor;
-	return $self->{_personaje};
-}
-
-sub hacer {
-	my $self = shift;
-	my $personaje = $self->personaje;
-	foreach my $key (@{Service::Atributo->atributos}) {
-		my $valor = $self->args->{$key};
-		Service::Atributo->asignar_a($personaje, $key, $valor);
+	sub crear {
+		my $class = shift;
+		my $self = __PACKAGE__->instancia;
+		my $args = shift;
+		my $constructor = Constructor->new($args);
+		my $personaje = Personaje->new;
+		$constructor->personaje($personaje);
+		$personaje = $constructor->hacer;
+		return $personaje;
 	}
 
-}
 1;

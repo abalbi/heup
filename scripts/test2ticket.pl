@@ -25,7 +25,7 @@ if ($use_behaviour) {
 		next if $line =~ /^use/;
 		next if $line =~ qr/^\[\d+\]/;
 		$line =~ s/ (Entonces|Dado|Cuando|Y|Pero)/ \*\*$1\*\*/i;
-		$line =~ s/^(\w)/\n$1/;
+		$line =~ s/^(\w.+)$/\n\*\*$1\*\*/;
 		print $line."\n";
 	}
 } else {
