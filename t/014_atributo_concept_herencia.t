@@ -24,7 +24,7 @@ describe "Como desarrollador quiero crear relaciones de herencia entre concepts 
     context "CUANDO cuando le ejecuto un constructor con un concept" => sub {
       my $constructor = Constructor->new({concept => 'nerd'});
       $constructor->personaje($personaje);
-      it "ENTONCES el personaje debe ser de sexo femenino" => sub {
+      it "ENTONCES el personaje debe tener valores acorde a las alteraciones correspondientes" => sub {
         $constructor->hacer;
         cmp_deeply $personaje->age, any(8..17);
       };

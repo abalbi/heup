@@ -1,8 +1,22 @@
 = Concept
 Concept es un atributo que tiene todos los personajes.
 Concept es de la clase Atributo::Concept.
-Los valores posibles de Concept son: criminal jailbird mafioso cat_burglar drug_dealer bandit dilettante artist writer intellectual gambler student drifter hobo cowboy prostitute hermit pilgrim entertainer comic musician movie_star clown investigator detective cop government_agent inquisitor nightlifer clubgoer skinhead punk barfly raver substance_abuser outsider aborigine third_world_resident politician judge mayor senator public_official governor professional engineer doctor mortician scholar punk club_crawler mosher skinhead classic_70s_punk reporter anchorperson newspaper paparazzo town_crier socialite dilettante host playboy sycophant prominent_spouse soldier bodyguard mercenary green_beret knight worker trucker farmer wage_slave servant serf sexy_secretary.
+Los Concept que heredan de 'criminal', que es un de los posibles, son: jailbird mafioso cat_burglar drug_dealer bandit.
+Los Concept que heredan de 'dilettante', que es un de los posibles, son: artist writer intellectual gambler student.
+Los Concept que heredan de 'drifter', que es un de los posibles, son: hobo cowboy prostitute hermit pilgrim.
+Los Concept que heredan de 'entertainer', que es un de los posibles, son: comic musician movie_star clown.
+Los Concept que heredan de 'investigator', que es un de los posibles, son: detective cop government_agent inquisitor.
 Los Concept que heredan de 'kid', que es un de los posibles, son: child runaway nerd gang_member street_urchin.
+Los Concept que heredan de 'nightlifer', que es un de los posibles, son: clubgoer skinhead punk barfly raver substance_abuser.
+Los Concept que heredan de 'outsider', que es un de los posibles, son: aborigine third_world_resident.
+Los Concept que heredan de 'politician', que es un de los posibles, son: judge mayor senator public_official governor.
+Los Concept que heredan de 'professional', que es un de los posibles, son: engineer doctor mortician scholar sexy_secretary.
+Los Concept que heredan de 'punk', que es un de los posibles, son: club_crawler mosher skinhead classic_70s_punk.
+Los Concept que heredan de 'reporter', que es un de los posibles, son: anchorperson newspaper paparazzo town_crier.
+Los Concept que heredan de 'socialite', que es un de los posibles, son: dilettante host playboy sycophant prominent_spouse.
+Los Concept que heredan de 'soldier', que es un de los posibles, son: bodyguard mercenary green_beret knight.
+Los Concept que heredan de 'worker', que es un de los posibles, son: trucker farmer wage_slave servant serf.
+
 Los personajes que tiene el Concept 'sex_secretary' siempre tendran Sex 'f'. 
 Los personajes que tiene el Concept 'prostitute' siempre tendran Sex 'f'. 
 Los personajes que tiene el Concept 'kid' siempre tendran Age desde 8 a 17. 

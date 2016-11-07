@@ -37,14 +37,26 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 		return $self->{_atributos};
 	}
 
+
+  # argumento -> preasignado -> propiedad -> alguno -> defecto
+
 	sub hacer {
 		my $self = shift;
 		my $personaje = $self->personaje;
 		my $atributos = $self->atributos;
 		foreach my $atributo (@$atributos){
 			my $key = $atributo->key;
-      my $valor = $self->argumentos->{$key};
-      $valor = $personaje->propiedad($key)->preasignado if not defined $valor;
+      my $valor;
+      if(not defined $valor) {
+        my $argumento = $self->argumentos->{$key};
+        $argumento = azar $argumento if ref $argumento eq 'ARRAY';
+        $valor = $argumento;
+      }
+      if(not defined $valor) {
+        my $preasignado = $personaje->propiedad($key)->preasignado;
+        $preasignado = azar $preasignado if ref $preasignado eq 'ARRAY';
+        $valor = $preasignado;
+      }
       $valor = $personaje->propiedad($key)->alguno($personaje) if not defined $valor;
 			$personaje->$key($valor);
       if($atributo->can('alteraciones')) {
@@ -54,7 +66,6 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
           my $entonces_key = $alter->{entonces_key};
           my $entonces_valor = $alter->{entonces_valor};
           if($personaje->es($si_key, $si_valor)) {
-            $entonces_valor = azar $entonces_valor if ref $entonces_valor eq 'ARRAY'; 
             $personaje->propiedad($entonces_key)->preasignado($entonces_valor);
           }
         }

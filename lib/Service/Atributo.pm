@@ -186,6 +186,7 @@ our $stash;
         code => sub {
           my $args = shift;
           my $stash = $args->{stash};
+          $stash->{$args->{lista}} = [] if !$stash->{$args->{lista}};
           my $lista = $stash->{$args->{lista}};
           my $valores = frases_parsear_valores($args->{valores});
           push @$lista, $args->{valor} if not scalar grep {$_ eq lc $args->{valor}} @$lista;
