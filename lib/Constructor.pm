@@ -58,7 +58,7 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
         $valor = $preasignado;
       }
       $valor = $personaje->propiedad($key)->alguno($personaje) if not defined $valor;
-			$personaje->$key($valor);
+			$personaje->$key($valor) if $personaje->propiedad($key)->es_valido($valor);
       if($atributo->can('alteraciones')) {
         foreach my $alter (@{$atributo->alteraciones}) {
           my $si_key = $alter->{si_key};

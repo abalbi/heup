@@ -31,6 +31,7 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
   sub propiedad {
     my $self = shift;
     my $key = shift;
+    die "key es requerido" if not defined $key;
     my $valor = shift;
     if(not exists $self->{_propiedades}->{$key}) {
       $self->{_propiedades}->{$key} = Personaje::Propiedad->new($key);

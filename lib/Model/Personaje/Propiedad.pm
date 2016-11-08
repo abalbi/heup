@@ -56,4 +56,14 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 		return $self->{_preasignado};		
 
 	}
+
+	sub es_valido {
+    my $self = shift;
+		my $valor = shift;
+    if($self->atributo->validos) {
+      return 1 if scalar grep {$_ eq $valor} @{$self->atributo->validos};
+      return 0;
+    }
+    return 1;
+	}
 1;

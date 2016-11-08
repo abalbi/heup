@@ -16,7 +16,6 @@ Los Concept que heredan de 'reporter', que es un de los posibles, son: anchorper
 Los Concept que heredan de 'socialite', que es un de los posibles, son: dilettante host playboy sycophant prominent_spouse.
 Los Concept que heredan de 'soldier', que es un de los posibles, son: bodyguard mercenary green_beret knight.
 Los Concept que heredan de 'worker', que es un de los posibles, son: trucker farmer wage_slave servant serf.
-
 Los personajes que tiene el Concept 'sex_secretary' siempre tendran Sex 'f'. 
 Los personajes que tiene el Concept 'prostitute' siempre tendran Sex 'f'. 
 Los personajes que tiene el Concept 'kid' siempre tendran Age desde 8 a 17. 
@@ -35,5 +34,21 @@ Los valores posibles de Name para personajes de sex 'm' son: Hugo Daniel Pablo A
 Age es un atributo que tiene todos los personajes.
 Los valores posibles de Age son: 17 a 40.
 
+= Hair_Color
+Hair_Color es un atributo que tiene todos los personajes.
+Los valores validos de Hair_Color son: black_hair natural_black_hair deepest_brunette_hair dark_brown_hair medium_brown_hair lightest_brown_hair natural_brown_hair light_brown_hair chestnut_brown_hair light_chestnut_brown_hair auburn_hair copper_hair red_hair titian_hair strawberry_blond_hair light_blonde_hair dark_blond_hair golden_blond_hair medium_blond_hair grey_hair white_hair white_hair_albinism.
+
+= Hair_Type
+Hair_Type es un atributo que tiene todos los personajes.
+Los valores validos de Hair_Type son: straight_hair wavy_hair curly_hair kinky_hair.
+
+
+= Eyes_Color
+Eyes_Color es un atributo que tiene todos los personajes.
+Los valores validos de Eyes_Color son: amber blue brown gray green hazel red violet.
+
+
+= Description
+Description es una categoria cuyos atributos son: hair_color hair_long hair_style eyes_color. 
 
 = FIN

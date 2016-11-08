@@ -26,6 +26,7 @@ describe "Como desarrollador quiero crear relaciones de herencia entre concepts 
       $constructor->personaje($personaje);
       it "ENTONCES el personaje debe tener valores acorde a las alteraciones correspondientes" => sub {
         $constructor->hacer;
+        $Data::Dumper::Maxdepth = 4;
         cmp_deeply $personaje->age, any(8..17);
       };
     };
