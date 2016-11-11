@@ -2,6 +2,7 @@ package HEUP;
 use Data::Dumper;
 use lib 'lib';
 use Log::Log4perl;
+use Data::Dumper;
 
 Log::Log4perl->init("log.conf");
 our $logger = Log::Log4perl->get_logger(__PACKAGE__);
@@ -24,11 +25,30 @@ chmod 0755, $heup_path if ! -X $heup_path;
 
 Service::Atributo->init;
 
-srand(24170985);
+our $srand = 24170985;
+our $srand_asignado = 0;
+our $random = 0;
+
+sub heup_srand {
+  my $args = shift;
+  $random = $args->{random} if exists $args->{random};
+  if($args->{srand}) {
+    $srand = $args->{srand};
+    srand($srand);    
+    $srand_asignado = 1;
+  }
+  if(!$srand_asignado) {
+    $srand = int rand(99999999) if $random;
+    srand($srand);
+    $srand_asignado = 1;
+  }
+  return $srand;
+}
 
 sub ejecutar {
 	my $class = shift;
 	my $args = shift;
+  $random = 1 if $args->{'random'};
 	my $personaje = Service::Personaje->crear($args);
 	return $personaje->detalle;
 }

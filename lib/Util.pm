@@ -23,6 +23,7 @@ sub l {
 
 sub azar {
 	my $valor = shift;
+  HEUP::heup_srand();
 	return $valor->[int rand scalar @$valor] if ref $valor eq 'ARRAY'; 
 	return int rand $valor + 1 if $valor =~ /^\d+$/;
 	return undef;
@@ -30,20 +31,37 @@ sub azar {
 
 sub t {
   my $string = shift;
-  my $temp = $string;
+  my $genero = shift;
   my $i = [];
-  my $t = [];
+  if(ref $string eq 'ARRAY') {
+    $string = join ', ', @$string;
+    $string =~ s/, ([^,]+)$/ y $1/; 
+  }
   my $stash = '';
   foreach my $l (split '', $string) {
     if($l =~ /\w/) {
       $stash .= $l;
     } else {
-      $stash = traducciones($stash) if es_traducible($stash);
       push @$i, $stash;
-      $stash = '';
       push @$i, $l;
+      $stash = '';
     }
   }
+  push @$i, $stash if $stash;
+  my $c = 0;
+  foreach my $l (@$i) {
+    $i->[$c] = traducciones($l) if es_traducible($l);
+    if($genero && $i->[$c] =~ /(\[(\w*)\|(\w*)\])/) {
+      my $match = $1;
+      my $replace;
+      #$match =~ /\[(\w*)\|(\w)*\]/;
+      $replace = $2 if $genero eq 'f';
+      $replace = $3 if $genero eq 'm';
+      $i->[$c] =~ s/\[\w*\|\w*\]/$replace/;
+    }
+    $c++;
+  }
+
   return join '', @$i;  
 }
 

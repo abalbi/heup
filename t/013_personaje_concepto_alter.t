@@ -27,7 +27,7 @@ describe "Como usuario quiero que los conceptos que defino, alteren el valor a a
   context "DADO un personaje" => sub {
     my $personaje = Personaje->new;
     context "CUANDO cuando le ejecuto un constructor con un concept" => sub {
-      my $constructor = Constructor->new({concept => 'sex_secretary'});
+      my $constructor = Constructor->new({concept => 'sexy_secretary'});
       $constructor->personaje($personaje);
       it "ENTONCES el personaje debe ser de sexo femenino" => sub {
         $constructor->hacer;

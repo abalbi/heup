@@ -2,6 +2,7 @@ use strict;
 use lib 'lib';
 use Test::More qw(no_plan);
 use Test::More::Behaviour;
+use Data::Dumper;
 use HEUP;
 
 describe "Como usuario quiero que al ejecutar heup me imprima la descripcion de un personaje" => sub {

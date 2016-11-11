@@ -19,4 +19,11 @@ describe "Como desarrollador quiero implementar una forma de traducir los tokens
       is $t, 'Ut in ojos marrones fermentum, vestibulum nulla eget, bibendum enim. Morbi ullamcorper sit amet nunc sit amet accumsan. Nunc tempor augue et ligula sollicitudin, ac imperdiet turpis egestas. Curabitur nisi libero, dignissim sed ipsum non, imperdiet pharetra ligula.';
     };
   };
+  context "CUANDO traduzco una palabra string" => sub {
+    my $t = t('brown_eyes');
+    it "ENTONCES entonces debo recibir la traduccion" => sub {
+      is $t, 'ojos marrones';
+    };
+  };
+
 };

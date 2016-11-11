@@ -1,7 +1,15 @@
 #!/usr/bin/perl
 use strict;
 use lib 'lib';
+use Data::Dumper;
 use HEUP;
+use Getopt::Complete (
+      'random!'		=> undef,
+      'srand'		=> undef,
+);
+
+
 print "Hello HEUP\n";
-print HEUP->ejecutar;
+print HEUP::heup_srand({%ARGS})."\n";
+print HEUP->ejecutar({%ARGS});
 print "\n";

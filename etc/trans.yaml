@@ -28,80 +28,80 @@ grey_hair: pelo gris
 white_hair: pelo blanco
 white_hair_albinism: pelo blanco albino
 criminal: criminal
-jailbird: convicto
-mafioso: mafioso
-cat_burglar: ladron gato
+jailbird: convict[a|o]
+mafioso: mafios[a|o]
+cat_burglar: ladron[a|] gato
 drug_dealer: dealer
-bandit: bandido
+bandit: bandid[a|o]
 dilettante: diletante
 artist: artista
-writer: escritor
+writer: escritor[a|]
 intellectual: intelectual
-gambler: jugador
+gambler: jugador[a|]
 student: estudiante
-drifter: vagabundo
-hobo: hobo
+drifter: vagabund[a|o]
+hobo: hob[a|o]
 cowboy: cowboy
 prostitute: prostituta
-hermit: hermitaneo
-pilgrim: pelgrino
-entertainer: animador
-comic: comico
-musician: musico
+hermit: hermitane[a|o]
+pilgrim: pelgrin[a|o]
+entertainer: animador[a|]
+comic: comic[a|o]
+musician: music[a|o]
 movie_star: estrella de cine
-clown: pajaso
-investigator: investigador
+clown: pajas[a|o]
+investigator: investigador[a|]
 detective: detective
 cop: policia
-government_agent: agente del gobierno
+government_agent: agente del gobiern[a|o]
 inquisitor: inquisitor
 kid: joven
-child: chico
-runaway: huido
+child: chic[a|o]
+runaway: huid[a|o]
 nerd: nerd
 gang_member: miembro de banda
-street_urchin: chico de la calle
-nightlifer: transnochador
-clubgoer: bolichero
+street_urchin: chic[a|o] de la calle
+nightlifer: transnochador[a|]
+clubgoer: bolicher[a|o]
 skinhead: skinhead
 punk: punk
 barfly: barfly
 raver: raver
-substance_abuser: adicto
-politician: politico
-judge: juezo
+substance_abuser: adict[a|o]
+politician: politic[a|o]
+judge: juez[a|]
 mayor: alcalde
-senator: senador
-public_official: oficial publico
-governor: gobernador
+senator: senador[a|]
+public_official: oficial public[a|o]
+governor: gobernador[a|]
 professional: profecional
-engineer: ingeniero
-doctor: doctor
-mortician: funerario
-scholar: universitario
+engineer: ingenier[a|o]
+doctor: doctor[a|]
+mortician: funerari[a|o]
+scholar: universitari[a|o]
 sexy_secretary: secretaria sexy
 club_crawler: club crawler
 mosher: mosher
 classic_70s_punk: punk clasico de los 70
-reporter: reportero
-anchorperson: presentador
-newspaper: redactor
+reporter: reporter[a|o]
+anchorperson: presentador[a|]
+newspaper: redactor[a|]
 paparazzo: paparazi
-socialite: mundano
-host: anfitrion
+socialite: mundan[a|o]
+host: anfitrion[a|]
 playboy: playboy
 sycophant: sicofante
 prominent_spouse: esposa prominente
 soldier: soldado
 bodyguard: guardaespaldas
-mercenary: mercenario
+mercenary: mercenari[a|o]
 knight: caballero
-worker: trabajador
-trucker: camionero
-farmer: grangero
-wage_slave: obrero
+worker: trabajador[a|]
+trucker: camioner[a|o]
+farmer: granger[a|o]
+wage_slave: obrer[a|o]
 servant: sirviente
-serf: siervo
+serf: sierv[a|o]
 f: mujer
 m: hombre
 auburn_hair: pelo castaño
@@ -109,3 +109,4 @@ straight_hair: pelo lacio
 wavy_hair: pelo ondulado
 curly_hair: pelo enrulado
 kinky_hair: pelo rizado 
+years_old: años de edad

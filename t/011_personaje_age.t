@@ -13,13 +13,13 @@ describe "Como usuario quiero que el personaje tenga una edad, definido por mi o
     Service::Atributo->init;
     my $atributo_age = Service::Atributo->traer('age');
     it "ENTONCES el atributo age debe tener valores entre un numero y otro" => sub {
-      cmp_deeply $atributo_age->posibles, [17..40];
+      cmp_deeply $atributo_age->posibles, [21..40];
     };
   };
   context "DADO un personaje" => sub {
     my $personaje = Personaje->new;
     context "CUANDO cuando le ejecuto un constructor" => sub {
-      my $constructor = Constructor->new;
+      my $constructor = Constructor->new({concept => 'criminal'});
       $constructor->personaje($personaje);
       my $atributo_age = Service::Atributo->traer('age');
       it "ENTONCES el hacer me debe devolver un personaje con una edad posibles" => sub {

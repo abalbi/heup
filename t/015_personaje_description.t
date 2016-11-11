@@ -29,12 +29,21 @@ describe "Como desarrollador quiero crear relaciones de herencia entre concepts 
       $constructor->personaje($personaje);
       it "ENTONCES el hacer me debe devolver un personaje con esas descripciones" => sub {
         my $per = $constructor->hacer;
+        
         my $atributo_hair_color = Service::Atributo->traer('hair_color');
         is $personaje->hair_color, 'natural_black_hair';
+        my $hair_color = t($personaje->hair_color);
+        like $personaje->detalle, qr/$hair_color/;
+
         my $atributo_hair_type = Service::Atributo->traer('hair_type');
         is $personaje->hair_type, 'straight_hair';
+        my $hair_type = t($personaje->hair_type);
+        like $personaje->detalle, qr/$hair_type/;
+
         my $atributo_eyes_color = Service::Atributo->traer('eyes_color');
         is $personaje->eyes_color, 'brown_eyes';
+        my $eyes_color = t($personaje->eyes_color);
+        like $personaje->detalle, qr/$eyes_color/;
       };
     };
   };
