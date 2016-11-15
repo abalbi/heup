@@ -49,8 +49,13 @@ sub ejecutar {
 	my $class = shift;
 	my $args = shift;
   $random = 1 if $args->{'random'};
-	my $personaje = Service::Personaje->crear($args);
-	return $personaje->detalle;
+  my $rtn = '';
+  $args->{sex} = 'f';
+  foreach (1..1) {
+    my $personaje = Service::Personaje->crear($args);
+    $rtn .= $personaje->detalle."\n";
+  } 
+	return $rtn;
 }
 
 1;

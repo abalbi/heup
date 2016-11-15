@@ -48,7 +48,7 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $str = '';
     $str .= $self->name;
     $str .= ': ';
-    $str .= t([$self->concept, $self->age . ' years_old', $self->hair_color, $self->hair_type, $self->eyes_color], $self->sex);
+    $str .= t([$self->concept . ' ' . $self->demeanor . ' (' . $self->nature . ')', $self->age . ' years_old', $self->hair_color, $self->hair_type, $self->eyes_color], $self->sex);
     return $str;    
   }
 

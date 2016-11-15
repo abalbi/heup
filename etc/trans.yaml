@@ -40,7 +40,7 @@ intellectual: intelectual
 gambler: jugador[a|]
 student: estudiante
 drifter: vagabund[a|o]
-hobo: hob[a|o]
+hobo: hobo
 cowboy: cowboy
 prostitute: prostituta
 hermit: hermitane[a|o]
@@ -49,7 +49,7 @@ entertainer: animador[a|]
 comic: comic[a|o]
 musician: music[a|o]
 movie_star: estrella de cine
-clown: pajas[a|o]
+clown: payas[a|o]
 investigator: investigador[a|]
 detective: detective
 cop: policia
@@ -78,7 +78,7 @@ professional: profecional
 engineer: ingenier[a|o]
 doctor: doctor[a|]
 mortician: funerari[a|o]
-scholar: universitari[a|o]
+scholar: erudit[a|o]
 sexy_secretary: secretaria sexy
 club_crawler: club crawler
 mosher: mosher
@@ -90,7 +90,6 @@ paparazzo: paparazi
 socialite: mundan[a|o]
 host: anfitrion[a|]
 playboy: playboy
-sycophant: sicofante
 prominent_spouse: esposa prominente
 soldier: soldado
 bodyguard: guardaespaldas
@@ -110,3 +109,73 @@ wavy_hair: pelo ondulado
 curly_hair: pelo enrulado
 kinky_hair: pelo rizado 
 years_old: años de edad
+addict: adict[a|o]
+adherent: adherente
+adjudicator: juez[a|]
+advisor: tutor[a|]
+analyst: analista
+architect: arquitect[a|o]
+artist: artista
+autocrat: autócrata
+autist: autista
+avant_garde: vanguardista
+barbarian: bárbar[a|o]
+believer: creyente
+bon_vivant: bon vivant
+bravo: brav[a|o]
+caregiver: cuidador[a|]
+cavalier: caballeresc[a|o]
+child: niñ[a|o]
+celebrant: celebrante
+competitor: competidor[a|]
+confidant: confidente
+conformist: conformista
+conniver: conniver
+critic: crític[a|o]
+crusader: cruzad[a|o]
+curmudgeon: cascarrabias
+defender: defensor
+demagogue: demagog[a|o]
+deviant: desviad[a|o]
+director: director
+dreamer: soñador[a|]
+eccentric: excéntric[a|o]
+engine: motor[a|]
+explorer: explorador[a|]
+evangelist: evangelista
+fanatic: fanátic[a|o]
+gallant: galante
+healer: curador[a|]
+honest_abe: honesta
+jester: bufón
+jobsworth: trabajos dignos
+judge: juez
+loner: solitari[a|o]
+manipulator: manipulador[a|]
+martyr: mártir
+masochist: masoquista
+meddler: entrometid[a|o]
+mediator: mediador
+monger: codicios[a|o]
+monster: monstru[a|o]
+non_partisan: no partidari[a|o]
+optimist: optimista
+paragon: pur[a|o]
+pedagogue: pedagog[a|o]
+penitent: penitente
+perfectionist: perfeccionista
+plotter: trazador[a|]
+poltroon: cobarde
+praise_seeker: praise_seeker
+provider: proveedor[a|]
+rebel: rebelde
+rogue: pícar[a|o]
+soldier: soldad[a|o]
+stoic: estoic[a|o]
+survivor: sobreviviente
+sycophant: sicofante
+traditionalist: tradicionalista
+thrill_seeker: thrill_seeker
+trickster: embaucador[a|]
+vigilante: vigilante
+visionary: visionari[a|o]

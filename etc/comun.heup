@@ -12,19 +12,27 @@ Los Concept que heredan de 'politician', que es un de los posibles, son: judge m
 Los Concept que heredan de 'professional', que es un de los posibles, son: engineer doctor mortician scholar sexy_secretary.
 Los Concept que heredan de 'punk', que es un de los posibles, son: mosher skinhead classic_70s_punk.
 Los Concept que heredan de 'reporter', que es un de los posibles, son: anchorperson newspaper paparazzo.
-Los Concept que heredan de 'socialite', que es un de los posibles, son: dilettante host playboy sycophant prominent_spouse.
+Los Concept que heredan de 'socialite', que es un de los posibles, son: dilettante host playboy prominent_spouse.
 Los Concept que heredan de 'soldier', que es un de los posibles, son: bodyguard mercenary knight.
-Los Concept que heredan de 'worker', que es un de los posibles, son: trucker farmer wage_slave servant serf.
+Los Concept que heredan de 'worker', que es un de los posibles, son: trucker farmer wage_slave servant.
 Los personajes que tiene el Concept 'sexy_secretary' siempre tendran Sex 'f'. 
 Los personajes que tiene el Concept 'prostitute' siempre tendran Sex 'f'. 
 Los personajes que tiene el Concept 'prominent_spouse' siempre tendran Sex 'f'. 
 Los personajes que tiene el Concept 'playboy' siempre tendran Sex 'm'. 
 Los personajes que tiene el Concept 'kid' siempre tendran Age desde 8 a 17. 
 Los personajes que tiene el Concept 'student' siempre tendran Age desde 19 a 28. 
+Los personajes que tiene el Concept 'scholar' siempre tendran Age desde 19 a 28. 
 Los personajes que tiene el Concept 'politician' siempre tendran Age desde 35 a 60. 
 Los personajes que tiene el Concept 'investigator' siempre tendran Age desde 25 a 50. 
 Los personajes que tiene el Concept 'professional' siempre tendran Age desde 25 a 50. 
 
+= Nature
+Nature es un atributo que tiene todos los personajes.
+Los valores validos de Nature son: addict adherent adjudicator advisor analyst architect artist autocrat autist avant_garde barbarian believer bon_vivant bravo caregiver cavalier child celebrant competitor confidant conformist conniver critic crusader curmudgeon defender demagogue deviant director dreamer eccentric engine explorer evangelist fanatic gallant healer honest_abe jester jobsworth judge loner manipulator martyr masochist meddler mediator monger monster non_partisan optimist paragon pedagogue penitent perfectionist plotter poltroon praise_seeker provider rebel rogue soldier stoic survivor sycophant traditionalist thrill_seeker trickster vigilante visionary.
+
+= Demeanor
+Demeanor es un atributo que tiene todos los personajes.
+Los valores validos de Demeanor son: addict adherent adjudicator advisor analyst architect artist autocrat autist avant_garde barbarian believer bon_vivant bravo caregiver cavalier child celebrant competitor confidant conformist conniver critic crusader curmudgeon defender demagogue deviant director dreamer eccentric engine explorer evangelist fanatic gallant healer honest_abe jester jobsworth judge loner manipulator martyr masochist meddler mediator monger monster non_partisan optimist paragon pedagogue penitent perfectionist plotter poltroon praise_seeker provider rebel rogue soldier stoic survivor sycophant traditionalist thrill_seeker trickster vigilante visionary.
 
 = Sex
 Sex es un atributo que tiene todos los personajes.
