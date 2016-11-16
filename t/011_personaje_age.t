@@ -19,7 +19,7 @@ describe "Como usuario quiero que el personaje tenga una edad, definido por mi o
   context "DADO un personaje" => sub {
     my $personaje = Personaje->new;
     context "CUANDO cuando le ejecuto un constructor" => sub {
-      my $constructor = Constructor->new({concept => 'criminal'});
+      my $constructor = Service::Personaje::Constructor->new({concept => 'criminal'});
       $constructor->personaje($personaje);
       my $atributo_age = Service::Atributo->traer('age');
       it "ENTONCES el hacer me debe devolver un personaje con una edad posibles" => sub {
@@ -28,7 +28,7 @@ describe "Como usuario quiero que el personaje tenga una edad, definido por mi o
       };
     };
     context "CUANDO cuando le ejecuto un constructor con una edad" => sub {
-      my $constructor = Constructor->new({age => 19});
+      my $constructor = Service::Personaje::Constructor->new({age => 19});
       $constructor->personaje($personaje);
       my $atributo_age = Service::Atributo->traer('age');
       it "ENTONCES el hacer me debe devolver un personaje con esa edad" => sub {

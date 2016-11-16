@@ -19,7 +19,7 @@ describe "Como usuario quiero que el personaje tenga una concept, definido por m
   context "DADO un personaje" => sub {
     my $personaje = Personaje->new;
     context "CUANDO cuando le ejecuto un constructor" => sub {
-      my $constructor = Constructor->new;
+      my $constructor = Service::Personaje::Constructor->new;
       $constructor->personaje($personaje);
       my $atributo_concept = Service::Atributo->traer('concept');
       it "ENTONCES el hacer me debe devolver un personaje con un concept posible" => sub {
@@ -28,7 +28,7 @@ describe "Como usuario quiero que el personaje tenga una concept, definido por m
       };
     };
     context "CUANDO cuando le ejecuto un constructor con un concept" => sub {
-      my $constructor = Constructor->new({concept => 'social_hacker'});
+      my $constructor = Service::Personaje::Constructor->new({concept => 'social_hacker'});
       $constructor->personaje($personaje);
       it "ENTONCES el hacer me debe devolver un personaje con ese concept" => sub {
         my $per = $constructor->hacer;

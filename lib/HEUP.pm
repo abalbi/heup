@@ -8,14 +8,17 @@ Log::Log4perl->init("log.conf");
 our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 $logger->level('TRACE');
 
-use Constructor;
 use Model::Atributo;
 use Model::Atributo::Concept;
 use Model::Atributo::Name;
+use Model::Historia;
 use Model::Personaje;
 use Model::Personaje::Propiedad;
+use Service::Historia;
+use Service::Historia::Constructor;
 use Service::Atributo;
 use Service::Personaje;
+use Service::Personaje::Constructor;
 
 our $app_path = $ENV{PWD};
 our $bin_path = $app_path.'/bin';
@@ -50,12 +53,11 @@ sub ejecutar {
 	my $args = shift;
   $random = 1 if $args->{'random'};
   my $rtn = '';
-  $args->{sex} = 'f';
-  foreach (1..1) {
-    my $personaje = Service::Personaje->crear($args);
-    $rtn .= $personaje->detalle."\n";
-  } 
-	return $rtn;
+  my $historia = Service::Historia->crear($args);
+  $rtn .= $historia->detalle_personajes;
+  $rtn .= "####################################################\n";
+  $rtn .= $historia->detalle;
+ 	return $rtn;
 }
 
 1;

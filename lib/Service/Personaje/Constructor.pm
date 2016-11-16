@@ -1,4 +1,4 @@
-package Constructor;
+package Service::Personaje::Constructor;
 use strict; 
 use JSON;
 use fields qw(_personaje _argumentos _atributos);
@@ -46,7 +46,6 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $atributos = $self->atributos;
     foreach my $atributo (@$atributos){
       my $key = $atributo->key;
-      $Data::Dumper::Maxdepth = 2;
       my $valor;
       if(not defined $valor) {
         my $argumento = $self->argumentos->{$key};

@@ -12,7 +12,7 @@ describe "Como desarrollador quiero crear relaciones de herencia entre concepts 
   context "DADO un personaje" => sub {
     my $personaje = Personaje->new;
     context "CUANDO cuando le ejecuto un constructor" => sub {
-      my $constructor = Constructor->new;
+      my $constructor = Service::Personaje::Constructor->new;
       $constructor->personaje($personaje);
       it "ENTONCES el hacer me debe devolver un personaje debe tener descripciones fisicas validas" => sub {
         my $per = $constructor->hacer;
@@ -25,7 +25,7 @@ describe "Como desarrollador quiero crear relaciones de herencia entre concepts 
       };
     };
     context "CUANDO cuando le ejecuto un constructor con parametros de descripciones fisicas" => sub {
-      my $constructor = Constructor->new({hair_color => 'natural_black_hair', hair_type => 'straight_hair', eyes_color => 'brown_eyes'});
+      my $constructor = Service::Personaje::Constructor->new({hair_color => 'natural_black_hair', hair_type => 'straight_hair', eyes_color => 'brown_eyes'});
       $constructor->personaje($personaje);
       it "ENTONCES el hacer me debe devolver un personaje con esas descripciones" => sub {
         my $per = $constructor->hacer;

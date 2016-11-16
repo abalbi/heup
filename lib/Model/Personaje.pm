@@ -44,7 +44,6 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
   sub detalle {
     my $self = shift;
-    $Data::Dumper::Maxdepth = 4;  
     my $str = '';
     $str .= $self->name;
     $str .= ': ';

@@ -22,7 +22,7 @@ describe "Como usuario quiero que el personaje tenga un nombre acorde con su sex
   context "DADO un personaje" => sub {
     my $personaje = Personaje->new;
     context "CUANDO le defino valor para sex en el constructor y no un name" => sub {
-      my $constructor = Constructor->new({sex => 'f'});
+      my $constructor = Service::Personaje::Constructor->new({sex => 'f'});
       $constructor->personaje($personaje);
       my $atributo_name = Service::Atributo->traer('name');
       it "ENTONCES el hacer me debe devolver un personaje con un name para el sex" => sub {
