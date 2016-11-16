@@ -22,7 +22,7 @@ describe "Como desarrollador quiero crear relaciones de herencia entre concepts 
   context "DADO un personaje" => sub {
     my $personaje = Personaje->new;
     context "CUANDO cuando le ejecuto un constructor con un concept" => sub {
-      my $constructor = Constructor->new({concept => 'nerd'});
+      my $constructor = Service::Personaje::Constructor->new({concept => 'nerd'});
       $constructor->personaje($personaje);
       it "ENTONCES el personaje debe tener valores acorde a las alteraciones correspondientes" => sub {
         $constructor->hacer;

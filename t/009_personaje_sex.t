@@ -12,7 +12,7 @@ describe "Como usuario quiero que el personaje tenga un sex, definido por mi o a
   context "DADO un personaje" => sub {
     my $personaje = Personaje->new;
     context "CUANDO le defino valor a un argumento que sea un atributo en el constructor" => sub {
-      my $constructor = Constructor->new({sex => 'f'});
+      my $constructor = Service::Personaje::Constructor->new({sex => 'f'});
       $constructor->personaje($personaje);
       my $atributo_name = Service::Atributo->traer('name');
       it "ENTONCES el hacer me debe devolver un personaje con un atributo con ese valor" => sub {
@@ -24,7 +24,7 @@ describe "Como usuario quiero que el personaje tenga un sex, definido por mi o a
     };
 
     context "CUANDO le no defino valor en el constructor" => sub {
-      my $constructor = Constructor->new;
+      my $constructor = Service::Personaje::Constructor->new;
       $constructor->personaje($personaje);
       my $atributo_name = Service::Atributo->traer('name');
       my $atributo_sex = Service::Atributo->traer('sex');

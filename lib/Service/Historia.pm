@@ -1,4 +1,4 @@
-package Service::Personaje;
+package Service::Historia;
 use strict; 
 use JSON;
 use base qw(Service);
@@ -12,11 +12,11 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 		my $class = shift;
 		my $self = __PACKAGE__->instancia;
 		my $args = shift;
-		my $constructor = Service::Personaje::Constructor->new($args);
-		my $personaje = Personaje->new;
-		$constructor->personaje($personaje);
-		$personaje = $constructor->hacer;
-		return $personaje;
+		my $constructor = Service::Historia::Constructor->new($args);
+		my $historia = Historia->new;
+		$constructor->historia($historia);
+		$historia = $constructor->hacer;
+		return $historia;
 	}
 
 1;

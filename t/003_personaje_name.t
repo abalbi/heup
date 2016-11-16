@@ -8,16 +8,10 @@ use Data::Dumper;
 use Util;
 
 describe "Como usuario quiero que el personaje tenga un nombre, definido por mi o al random, segun la configuracion" => sub {
-	context "CUANDO ejecuto heup con un nombre para el personaje" => sub {
-		my $out = HEUP->ejecutar({name => 'Aldo'});
-    it "ENTONCES tiene que devolver la descripcion del personaje" => sub {
-    	like $out, qr/Aldo\:/;
-    };
-  };
   context "DADO un personaje" => sub {
     my $personaje = Personaje->new;
     context "CUANDO le defino valor a un argumento que sea un atributo en el constructor" => sub {
-      my $constructor = Constructor->new({name => 'Aldo'});
+      my $constructor = Service::Personaje::Constructor->new({name => 'Aldo'});
       $constructor->personaje($personaje);
       my $atributo_sex = Service::Atributo->traer('sex');
       it "ENTONCES el hacer me debe devolver un personaje con un atributo con ese valor" => sub {
@@ -39,7 +33,7 @@ describe "Como usuario quiero que el personaje tenga un nombre, definido por mi 
     };
 
     context "CUANDO le no defino valor en el constructor" => sub {
-      my $constructor = Constructor->new;
+      my $constructor = Service::Personaje::Constructor->new;
       $constructor->personaje($personaje);
       my $atributo_name = Service::Atributo->traer('name');
       my $atributo_sex = Service::Atributo->traer('sex');

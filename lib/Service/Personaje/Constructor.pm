@@ -1,4 +1,4 @@
-package Constructor;
+package Service::Personaje::Constructor;
 use strict; 
 use JSON;
 use fields qw(_personaje _argumentos _atributos);
