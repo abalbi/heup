@@ -34,11 +34,16 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
   sub hacer {
     my $self = shift;
     my $historia = $self->historia;
-    push @{$historia->pasos}, 'Se descubre la amenaza que es <monstruo>, que daña a <victima>';
-    push @{$historia->pasos}, '<protagonista> es llamado a vencer a <monstruo>';
-    push @{$historia->pasos}, '<protagonista> se prepara';
-    push @{$historia->pasos}, '<protagonista> se enfrenta a <monstruo>';
-    push @{$historia->pasos}, '<protagonista> vence a <monstruo>';
+    my $tipos = Service::Historia->tipos;
+    my $tipo = $self->argumentos->{tipo};
+    $tipo = $historia->tipo if not defined $tipo;
+    $tipo = azar $tipos if not defined $tipo;
+    $tipo = Service::Historia->traer($tipo) if not ref $tipo;
+
+    $historia->tipo($tipo);
+    foreach my $paso (@{$tipo->pasos}) {
+      push @{$historia->pasos}, $paso;
+    }
     foreach my $paso (@{$historia->pasos}) {
       my $roles = [$paso =~ /\<\w+\>/g];
       foreach my $rol (@$roles) {

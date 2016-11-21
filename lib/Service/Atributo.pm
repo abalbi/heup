@@ -10,6 +10,7 @@ use Util;
 our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 $logger->level('TRACE');
 our $stash;
+our $instancia;
 
   sub new {
     my $self = shift;
@@ -17,6 +18,12 @@ our $stash;
     $self = fields::new($self);
     $self->{_atributos} = [];
     return $self;
+  }
+
+  sub instancia {
+    my $class = shift;
+    $instancia = $class->new if !$instancia;
+    return $instancia;
   }
 
 
