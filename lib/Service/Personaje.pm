@@ -8,6 +8,23 @@ use Data::Dumper;
 
 our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
+our $instancia;
+
+  sub new {
+    my $self = shift;
+    my $key = shift;
+    $self = fields::new($self);
+    return $self;
+  }
+
+
+  sub instancia {
+    my $class = shift;
+    $instancia = $class->new if !$instancia;
+    return $instancia;
+  }
+
+
 	sub crear {
 		my $class = shift;
 		my $self = __PACKAGE__->instancia;

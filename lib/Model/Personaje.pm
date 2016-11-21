@@ -8,12 +8,12 @@ use Util;
 
 our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
-	sub new {
-		my $self = shift;
-		my $args = shift;
-		$self = fields::new($self);
-		return $self;
-	}
+  sub new {
+    my $self = shift;
+    my $args = shift;
+    $self = fields::new($self);
+    return $self;
+  }
 
 	sub AUTOLOAD {
     my $method = $AUTOLOAD;

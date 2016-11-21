@@ -1,7 +1,7 @@
 package Historia;
 use strict; 
 use JSON;
-use fields qw(_roles _pasos);
+use fields qw(_roles _pasos _tipo);
 our $AUTOLOAD;
 use Data::Dumper;
 use Util;
@@ -30,10 +30,18 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     return $self->{_pasos};
   }
 
+  sub tipo {
+    my $self = shift;
+    my $tipo = shift;
+    $self->{_tipo} = $tipo if defined $tipo;
+    return $self->{_tipo};
+  }
+
   sub detalle_personajes {
     my $self = shift;
     return join("\n", map {$self->roles->{$_}->detalle} sort keys %{$self->roles})."\n";
   }
+  
   sub detalle {
     my $self = shift;
     my $rtn = '';
@@ -49,7 +57,4 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     }
     return $rtn;    
   }
-
-
-
 1;

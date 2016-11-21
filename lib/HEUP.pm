@@ -13,6 +13,7 @@ use Model::Atributo;
 use Model::Atributo::Concept;
 use Model::Atributo::Name;
 use Model::Historia;
+use Model::Tipo;
 use Model::Personaje;
 use Model::Personaje::Propiedad;
 use Model::Valor;
