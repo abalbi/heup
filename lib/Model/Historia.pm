@@ -1,7 +1,7 @@
 package Historia;
 use strict; 
 use JSON;
-use fields qw(_roles _pasos _tipo);
+use fields qw(_roles _pasos _tipo _entorno);
 our $AUTOLOAD;
 use Data::Dumper;
 use Util;
@@ -35,6 +35,13 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $tipo = shift;
     $self->{_tipo} = $tipo if defined $tipo;
     return $self->{_tipo};
+  }
+
+  sub entorno {
+    my $self = shift;
+    my $entorno = shift;
+    $self->{_entorno} = $entorno if defined $entorno;
+    return $self->{_entorno};
   }
 
   sub detalle_personajes {

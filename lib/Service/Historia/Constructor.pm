@@ -36,11 +36,17 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $historia = $self->historia;
     my $tipos = Service::Historia->tipos;
     my $tipo = $self->argumentos->{tipo};
+    my $entorno = $self->argumentos->{entorno};
     $tipo = $historia->tipo if not defined $tipo;
     $tipo = azar $tipos if not defined $tipo;
     $tipo = Service::Historia->traer($tipo) if not ref $tipo;
-
     $historia->tipo($tipo);
+
+    $entorno = $historia->entorno if not defined $entorno;
+    $entorno = Service::Entorno->traer($entorno) if not ref $entorno;
+    $historia->entorno($entorno);
+
+
     foreach my $paso (@{$tipo->pasos}) {
       push @{$historia->pasos}, $paso;
     }
@@ -56,6 +62,4 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     }
   	return $historia;
   }
-
-
 1;
