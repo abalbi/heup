@@ -42,24 +42,35 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
   sub hacer {
     my $self = shift;
+    $logger->trace('Hacer personaje');
     my $personaje = $self->personaje;
     my $atributos = $self->atributos;
     foreach my $atributo (@$atributos){
       my $key = $atributo->key;
-      $Data::Dumper::Maxdepth = 2;
+      $logger->trace("Aplicando $key");
       my $valor;
       if(not defined $valor) {
         my $argumento = $self->argumentos->{$key};
         $argumento = azar $argumento if ref $argumento eq 'ARRAY';
         $valor = $argumento;
+        $logger->trace("Se busco valor para $key por argumento: '$valor'");
       }
       if(not defined $valor) {
         my $preasignado = $personaje->propiedad($key)->preasignado;
         $preasignado = azar $preasignado if ref $preasignado eq 'ARRAY';
         $valor = $preasignado;
+        $logger->trace("Se busco valor para $key por preasignado: '$valor'");
       }
-      $valor = $personaje->propiedad($key)->alguno($personaje) if not defined $valor;
-      $personaje->$key($valor) if $personaje->propiedad($key)->es_valido($valor);
+      if(not defined $valor) {
+        $valor = $personaje->propiedad($key)->alguno($personaje);
+        $logger->trace("Se busco algun valor para $key: '$valor'");
+      }
+      if($personaje->propiedad($key)->es_valido($valor)) {
+        $personaje->$key($valor);
+        $logger->trace("El valor para $key es valido: '$valor'");
+      } else {
+        $logger->trace("El valor para $key NO es valido: '$valor'");
+      }
       if($atributo->can('alteraciones')) {
         foreach my $alter (@{$atributo->alteraciones}) {
           my $si_key = $alter->{si_key};
@@ -74,5 +85,4 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     }
     return $personaje;
   }
-
 1;

@@ -15,6 +15,7 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 		foreach my $key (keys %$args) {
 			$self->{'_'.$key} = $args->{$key};
 		}
+		$logger->trace('New Atributo key=', $self->key, ' clase=', ref($self));
 		return $self;
 	}
 
@@ -27,12 +28,14 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
 	sub posibles {
 		my $self = shift;
+		my $crudo = shift;
 		return $self->validos if not defined $self->{_posibles};
 		return $self->{_posibles}
 	}
 
 	sub validos {
 		my $self = shift;
+		my $crudo = shift;
 		return $self->{_validos}
 	}
 

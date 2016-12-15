@@ -24,6 +24,9 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     $logger->trace('Buscando metodo ', $method, ' valor: ', l $valor);
     $logger->logconfess("No existe el metodo o atributo '$_[0]'") if $propiedad eq 'propiedad';
     $self->propiedad($propiedad, $valor) if defined $valor;
+    if(ref $self->propiedad($propiedad)->valor eq 'HASH' && exists $self->propiedad($propiedad)->valor->{valor} ) {
+      return $self->propiedad($propiedad)->valor->{valor};
+    }
     return $self->propiedad($propiedad)->valor;
     $logger->logconfess("No existe el metodo o atributo '$method'");
   }
@@ -44,7 +47,6 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 
   sub detalle {
     my $self = shift;
-    $Data::Dumper::Maxdepth = 4;  
     my $str = '';
     $str .= $self->name;
     $str .= ': ';

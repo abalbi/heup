@@ -5,6 +5,9 @@ use Test::More qw(no_plan);
 use Test::More::Behaviour;
 use HEUP;
 
+Service::Atributo->init;
+
+
 describe "Como desarrollador quiero que las propiedades esten relacionadas a atributos" => sub {
   context "CUANDO tengo una propiedad a la que le paso nombre en el constructor" => sub {
 		my $propiedad = Personaje::Propiedad->new('name');

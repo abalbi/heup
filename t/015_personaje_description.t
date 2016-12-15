@@ -7,6 +7,7 @@ use Data::Dumper;
 use HEUP;
 
 use Util;
+Service::Atributo->init;
 
 describe "Como desarrollador quiero crear relaciones de herencia entre concepts para que se hereden las alteraciones" => sub {
   context "DADO un personaje" => sub {

@@ -5,8 +5,12 @@ use Test::More::Behaviour;
 use Test::Deep;
 use Data::Dumper;
 use HEUP;
-
+$Atributo::logger->level('TRACE');
+$Factory::Atributo::logger->level('TRACE');
+$Service::Atributo::logger->level('TRACE');
+$Constructor::logger->level('TRACE');
 use Util;
+
 
 describe "Como usuario quiero que el personaje tenga un nombre acorde con su sexo " => sub {
   context "CUANDO ejecuto el init del Servicio de Atributo" => sub {

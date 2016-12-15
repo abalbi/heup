@@ -4,7 +4,7 @@ use Test::More qw(no_plan);
 use Test::More::Behaviour;
 use Test::Deep;
 use HEUP;
-
+use Data::Dumper;
 use Util;
 
 describe "Como usuario quiero que el personaje tenga un nombre, definido por mi o al random, segun la configuracion" => sub {
@@ -25,7 +25,7 @@ describe "Como usuario quiero que el personaje tenga un nombre, definido por mi 
         is $per->name, 'Aldo';
         is $personaje->name, 'Aldo';
         like $personaje->name, qr/^\w+$/;
-        cmp_deeply $personaje->sex,  any(@{$atributo_sex->posibles});
+        cmp_deeply $personaje->sex, any(@{$atributo_sex->posibles});
 
       };
     };

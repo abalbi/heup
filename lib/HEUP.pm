@@ -9,6 +9,7 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 $logger->level('TRACE');
 
 use Constructor;
+use Factory::Atributo;
 use Model::Atributo;
 use Model::Atributo::Concept;
 use Model::Atributo::Name;
@@ -23,7 +24,6 @@ our $heup_path = $bin_path.'/heup';
 
 chmod 0755, $heup_path if ! -X $heup_path;
 
-Service::Atributo->init;
 
 our $srand = 24170985;
 our $srand_asignado = 0;
@@ -46,8 +46,9 @@ sub heup_srand {
 }
 
 sub ejecutar {
-	my $class = shift;
-	my $args = shift;
+  my $class = shift;
+  my $args = shift;
+  Service::Atributo->init;
   $random = 1 if $args->{'random'};
   my $rtn = '';
   $args->{sex} = 'f';

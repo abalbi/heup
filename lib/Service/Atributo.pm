@@ -32,7 +32,7 @@ our $stash;
     my $class = shift;
     my $self = __PACKAGE__->instancia;
     my $key = shift;
-    return [grep {$_->key eq $key} @{$self->atributos}]->[0];
+    return [grep {$_->key eq $key if defined $_} @{$self->atributos}]->[0];
   }
 
   sub atributos {
@@ -42,6 +42,7 @@ our $stash;
     my $atributos = [];
     if($filter) {
       foreach my $atributo (@{$self->{_atributos}}) {
+        next if not defined $atributo;
         push @$atributos, $atributo if scalar grep { $filter->{$_} eq $atributo->$_} keys %$filter;
       } 
     } else {
@@ -53,9 +54,99 @@ our $stash;
   sub init {
     my $self = __PACKAGE__->instancia;
     $logger->info('INIT: inicializando');
-    $self->load_etc;
-  }
+    my $factory = Factory::Atributo->new;
+    $factory->este('concept')
+      ->tiene_origen('comun.heup')
+      ->es_requerido
+      ->es('Atributo::Concept')
+      ->usa_posibles
+      ->tiene_estos_valores(qw(sexy_secretary))
+      ->de('kid')->heredan(qw(child runaway nerd gang_member street_urchin))
+      ->de('criminal')->heredan(qw(jailbird mafioso cat_burglar drug_dealer bandit))
+      ->de('dilettante')->heredan(qw(artist writer intellectual gambler student))
+      ->de('drifter')->heredan(qw(hobo cowboy prostitute hermit pilgrim))
+      ->de('entertainer')->heredan(qw(comic musician movie_star clown))
+      ->de('investigator')->heredan(qw(detective cop government_agent inquisitor))
+      ->de('nightlifer')->heredan(qw(clubgoer skinhead punk barfly raver substance_abuser))
+      ->de('politician')->heredan(qw(judge mayor senator public_official governor))
+      ->de('professional')->heredan(qw(engineer doctor mortician scholar sexy_secretary))
+      ->de('punk')->heredan(qw(mosher skinhead classic_70s_punk))
+      ->de('reporter')->heredan(qw(anchorperson newspaper paparazzo))
+      ->de('socialite')->heredan(qw(dilettante host playboy prominent_spouse))
+      ->de('soldier')->heredan(qw(bodyguard mercenary knight))
+      ->de('worker')->heredan(qw(trucker farmer wage_slave servant))
+      ->alteracion('sexy_secretary' => {sex => 'f'})
+      ->alteracion('prostitute' => {sex => 'f'})
+      ->alteracion('prominent_spouse' => {sex => 'f'})
+      ->alteracion('playboy' => {sex => 'm'})
+      ->alteracion('kid' => {age => [8..17]})
+      ->alteracion('student' => {age => [19..28]})
+      ->alteracion('scholar' => {age => [19..28]})
+      ->alteracion('politician' => {age => [35..60]})
+      ->alteracion('investigator' => {age => [25..50]})
+      ->alteracion('professional' => {age => [25..50]})
+    ;
+    $factory->hacer;
+    my $factory = Factory::Atributo->new;
+    $factory->este('nature')
+      ->tiene_origen('comun.heup')
+      ->es_requerido
+      ->usa_validos
+      ->tiene_estos_valores(qw(addict adherent adjudicator advisor analyst architect artist autocrat autist avant_garde barbarian believer bon_vivant bravo caregiver cavalier child celebrant competitor confidant conformist conniver critic crusader curmudgeon defender demagogue deviant director dreamer eccentric engine explorer evangelist fanatic gallant healer honest_abe jester jobsworth judge loner manipulator martyr masochist meddler mediator monger monster non_partisan optimist paragon pedagogue penitent perfectionist plotter poltroon praise_seeker provider rebel rogue soldier stoic survivor sycophant traditionalist thrill_seeker trickster vigilante visionary));
+    $factory->hacer;
+    my $factory = Factory::Atributo->new;
+    $factory->este('demeanor')
+      ->tiene_origen('comun.heup')
+      ->es_requerido
+      ->usa_validos
+      ->tiene_estos_valores(qw(addict adherent adjudicator advisor analyst architect artist autocrat autist avant_garde barbarian believer bon_vivant bravo caregiver cavalier child celebrant competitor confidant conformist conniver critic crusader curmudgeon defender demagogue deviant director dreamer eccentric engine explorer evangelist fanatic gallant healer honest_abe jester jobsworth judge loner manipulator martyr masochist meddler mediator monger monster non_partisan optimist paragon pedagogue penitent perfectionist plotter poltroon praise_seeker provider rebel rogue soldier stoic survivor sycophant traditionalist thrill_seeker trickster vigilante visionary));
+    $factory->hacer;
+    my $factory = Factory::Atributo->new;
+    $factory->este('sex')
+      ->tiene_origen('comun.heup')
+      ->es_requerido
+      ->usa_validos
+      ->tiene_estos_valores(qw[f m]);
+    $factory->hacer;
+    my $factory = Factory::Atributo->new;
+    my $valores_f = [qw(Lucia Maria Martina Paula Daniela Sofia Valeria Carla Sara Alba Julia Noa Emma Claudia Carmen Marta Valentina Irene Adriana Ana Laura Elena Alejandra Ines Marina Vera Candela Laia Ariadna Lola Andrea Rocio Angela Vega Nora Jimena Blanca Alicia Clara Olivia Celia Alma Eva Elsa Leyre Natalia Victoria Isabel Cristina Lara Abril Triana Nuria Aroa Carolina Manuela Chloe Mia Mar Gabriela Mara Africa Iria Naia Helena Paola Noelia Nahia Miriam Salma)];
+    my $valores_m = [qw(Hugo Daniel Pablo Alejandro Alvaro Adrian David Martin Mario Diego Javier Manuel Lucas Nicolas Marcos Leo Sergio Mateo Izan Alex Iker Marc Jorge Carlos Miguel Antonio Angel Gonzalo Juan Ivan Eric Ruben Samuel Hector Victor Enzo Jose Gabriel Bruno Dario Raul Adam Guillermo Francisco Aaron Jesus Oliver Joel Aitor Pedro Rodrigo Erik Marco Alberto Pau Jaime Asier Luis Rafael Mohamed Dylan Marti Ian Pol Ismael Oscar Andres Alonso Biel Rayan Jan Fernando Thiago Arnau Cristian Gael Ignacio Joan)];
+    $factory->este('name')
+      ->tiene_origen('comun.heup')
+      ->es_requerido
+      ->es('Atributo::Name')
+      ->para({sex => 'f'})->tiene_estos_valores(@{$valores_f})
+      ->para({sex => 'm'})->tiene_estos_valores(@{$valores_m});
+    $factory->hacer;
+    my $factory = Factory::Atributo->new;
+    $factory->este('age')
+      ->tiene_origen('comun.heup')
+      ->es_requerido
+      ->tiene_estos_valores(21..40);
+    $factory->hacer;
+    my $factory = Factory::Atributo->new;
+    $factory->este('hair_color')
+      ->tiene_origen('comun.heup')
+      ->es_requerido
+      ->usa_validos
+      ->tiene_estos_valores(qw(black_hair natural_black_hair deepest_brunette_hair dark_brown_hair medium_brown_hair lightest_brown_hair natural_brown_hair light_brown_hair chestnut_brown_hair light_chestnut_brown_hair auburn_hair copper_hair red_hair titian_hair strawberry_blond_hair light_blonde_hair dark_blond_hair golden_blond_hair medium_blond_hair grey_hair white_hair white_hair_albinism));
+    $factory->hacer;
+    my $factory = Factory::Atributo->new;
+    $factory->este('hair_type')
+      ->tiene_origen('comun.heup')
+      ->es_requerido
+      ->usa_validos
+      ->tiene_estos_valores(qw(straight_hair wavy_hair curly_hair kinky_hair));
+    $factory->hacer;
+    my $factory = Factory::Atributo->new;
+    $factory->este('eyes_color')
+      ->tiene_origen('comun.heup')
+      ->es_requerido
+      ->usa_validos
+      ->tiene_estos_valores(qw(amber_eyes blue_eyes brown_eyes gray_eyes green_eyes hazel_eyes red_eyes violet_eyes));
+    $factory->hacer;
 
+  }
   sub traer_o_crear {
     my $class = shift;
     my $self = __PACKAGE__->instancia;
@@ -85,155 +176,5 @@ our $stash;
     }
   }
 
-  sub load_etc {
-    my $self = __PACKAGE__->instancia;
-    my $etc = 'etc/';
-    opendir(my $dh, $etc) || die "Can't opendir $etc: $!";
-    my @heups = grep { $_ !~ /^\./ && $_ =~ /.*.heup/ } readdir($dh);
-    closedir $dh;
-    foreach my $file (@heups) {
-      $logger->info("INIT: cargando $file");
-      open my $fh, $etc.$file;
-      my $lines = [<$fh>];
-      close $fh;
-
-      $stash = {};
-      my $warns = [];
-      foreach my $line (@{$lines}) {
-        my $key;
-        foreach my $frase (@{$self->frases}) {
-          if($line =~ $frase->{re}) {
-            my $args = {%+};
-            $key = lc($+{key}) if $+{key};
-            $args->{stash} = $stash;
-            my $res = &{$frase->{code}}($args);
-            if($res eq '__END__') {
-              $logger->debug("Se crea el atributo: ", l $stash);
-              $stash->{src} = $file;
-              if($stash->{posibles}) {
-                foreach my $valor (@{$stash->{posibles}}) {
-                  push @$warns, $valor if !ref $valor && $valor !~ /^\d+$/ && !es_traducible($valor);
-                }
-              }
-              if($stash->{validos}) {
-                foreach my $valor (@{$stash->{validos}}) {
-                  push @$warns, $valor if $valor && $valor !~ /^\d+$/ && !es_traducible($valor);
-                }
-              }
-              Service::Atributo->crear($stash);
-              $stash = {}
-            }
-          }
-        }
-      }
-      $logger->warn('Los siguientes valores no tiene traduccion:', l($warns)) if scalar @$warns;
-    }
-  }
-
-  sub frases {
-    return [
-      { 
-        re => qr/(?<key>\w+) es un atributo/,
-        code => sub {
-          my $args = shift;
-          $args->{stash}->{key} = lc $args->{key};
-        }
-      },
-      { 
-        re => qr/que tiene todos los personajes/,
-        code => sub {
-          my $args = shift;
-          $args->{stash}->{es_requerido} = 1;
-        }
-      },
-      { 
-        re => qr/(?<key>\w+) es de la clase (?<clase>[\w:]+)/,
-        code => sub {
-          my $args = shift;
-          $args->{stash}->{clase} = $args->{clase};
-        }
-      },
-      { 
-        re => qr/Los valores (?<lista>posibles|validos) de (?<key>\w+) son.*\: (?<valores>[\w ]+)\./i,
-        code => sub {
-          my $args = shift;
-          my $valores = frases_parsear_valores($args->{valores});
-          $args->{stash}->{$args->{lista}} = $valores;
-        }
-      },
-      { 
-        re => qr/Los valores (?<lista>posibles|validos) de (?<key>\w+) para personajes de (?<atributo>\w+) '(?<valor>\w+)' son.*\: (?<valores>[\w ]+)\./i,
-        code => sub {
-          my $args = shift;
-          my $valores = frases_parsear_valores($args->{valores});
-          push @{$args->{stash}->{$args->{lista}}}, map {{ valor => $_ , atributos => {$args->{atributo} => $args->{valor}}}} @$valores;
-        }
-      },
-      { 
-        re => qr/^\=/,
-        code => sub {
-          my $args = shift;
-          return '__END__';
-        }
-      },
-      { 
-        re => qr/Los personajes que tiene el (?<si_key>\w+) \'(?<si_valor>\w+)\' siempre tendran (?<entonces_key>\w+) \'(?<entonces_valor>\w+)\'\./i,
-        code => sub {
-          my $args = shift;
-          my $stash = $args->{stash};
-          push @{$stash->{alteraciones}}, hacer_alteracion($args);
-        }
-      },
-      { 
-        re => qr/Los personajes que tiene el (?<si_key>\w+) \'(?<si_valor>\w+)\' siempre tendran (?<entonces_key>\w+) (?<entonces_valor>desde \d+ a \d+)/i,
-        code => sub {
-          my $args = shift;
-          my $stash = $args->{stash};
-          push @{$stash->{alteraciones}}, hacer_alteracion($args);
-        }
-      },
-      { 
-        re => qr/Los (?<key>\w+) que heredan de \'(?<valor>\w+)\', que es un de los (?<lista>posibles|validos)\, son.*\: (?<valores>[\w ]+)\./i,        
-        code => sub {
-          my $args = shift;
-          my $stash = $args->{stash};
-          $stash->{$args->{lista}} = [] if !$stash->{$args->{lista}};
-          my $lista = $stash->{$args->{lista}};
-          my $valores = frases_parsear_valores($args->{valores});
-          push @$lista, $args->{valor} if not scalar grep {$_ eq lc $args->{valor}} @$lista;
-          foreach my $valor (@$valores) {
-            push @$lista, $valor if not scalar grep {$_ eq lc $valor} @$lista;
-            $stash->{herencias}->{$valor} = [] if !$stash->{herencias}->{$valor};
-            push @{$stash->{herencias}->{$valor}}, $args->{valor};
-          }
-        }
-      },
-    ]
-  }
-
-  sub hacer_alteracion {
-    my $args = shift;
-    if($args->{entonces_valor} =~ /desde (\d+) a (\d+)/i) {
-      my $desde = $1;
-      my $hasta = $2;
-      $args->{entonces_valor} = [$desde..$hasta];
-    }
-    return {
-      si_key => lc $args->{si_key},
-      si_valor => $args->{si_valor},
-      entonces_key => lc $args->{entonces_key},
-      entonces_valor => $args->{entonces_valor},
-    };
-  }
-
-  sub frases_parsear_valores {
-    my $valores = shift;
-    if($valores =~ /(?<min>\d+) a (?<max>\d+)/) {
-      $valores = [$+{min}..$+{max}];
-    } else {
-      $valores = [split ' ', $valores];
-    }
-    return $valores;
-  }
 
 1;

@@ -1,30 +1,3 @@
-= Concept
-Concept es un atributo que tiene todos los personajes.
-Concept es de la clase Atributo::Concept.
-Los Concept que heredan de 'criminal', que es un de los posibles, son: jailbird mafioso cat_burglar drug_dealer bandit.
-Los Concept que heredan de 'dilettante', que es un de los posibles, son: artist writer intellectual gambler student.
-Los Concept que heredan de 'drifter', que es un de los posibles, son: hobo cowboy prostitute hermit pilgrim.
-Los Concept que heredan de 'entertainer', que es un de los posibles, son: comic musician movie_star clown.
-Los Concept que heredan de 'investigator', que es un de los posibles, son: detective cop government_agent inquisitor.
-Los Concept que heredan de 'kid', que es un de los posibles, son: child runaway nerd gang_member street_urchin.
-Los Concept que heredan de 'nightlifer', que es un de los posibles, son: clubgoer skinhead punk barfly raver substance_abuser.
-Los Concept que heredan de 'politician', que es un de los posibles, son: judge mayor senator public_official governor.
-Los Concept que heredan de 'professional', que es un de los posibles, son: engineer doctor mortician scholar sexy_secretary.
-Los Concept que heredan de 'punk', que es un de los posibles, son: mosher skinhead classic_70s_punk.
-Los Concept que heredan de 'reporter', que es un de los posibles, son: anchorperson newspaper paparazzo.
-Los Concept que heredan de 'socialite', que es un de los posibles, son: dilettante host playboy prominent_spouse.
-Los Concept que heredan de 'soldier', que es un de los posibles, son: bodyguard mercenary knight.
-Los Concept que heredan de 'worker', que es un de los posibles, son: trucker farmer wage_slave servant.
-Los personajes que tiene el Concept 'sexy_secretary' siempre tendran Sex 'f'. 
-Los personajes que tiene el Concept 'prostitute' siempre tendran Sex 'f'. 
-Los personajes que tiene el Concept 'prominent_spouse' siempre tendran Sex 'f'. 
-Los personajes que tiene el Concept 'playboy' siempre tendran Sex 'm'. 
-Los personajes que tiene el Concept 'kid' siempre tendran Age desde 8 a 17. 
-Los personajes que tiene el Concept 'student' siempre tendran Age desde 19 a 28. 
-Los personajes que tiene el Concept 'scholar' siempre tendran Age desde 19 a 28. 
-Los personajes que tiene el Concept 'politician' siempre tendran Age desde 35 a 60. 
-Los personajes que tiene el Concept 'investigator' siempre tendran Age desde 25 a 50. 
-Los personajes que tiene el Concept 'professional' siempre tendran Age desde 25 a 50. 
 
 = Nature
 Nature es un atributo que tiene todos los personajes.
@@ -34,15 +7,6 @@ Los valores validos de Nature son: addict adherent adjudicator advisor analyst a
 Demeanor es un atributo que tiene todos los personajes.
 Los valores validos de Demeanor son: addict adherent adjudicator advisor analyst architect artist autocrat autist avant_garde barbarian believer bon_vivant bravo caregiver cavalier child celebrant competitor confidant conformist conniver critic crusader curmudgeon defender demagogue deviant director dreamer eccentric engine explorer evangelist fanatic gallant healer honest_abe jester jobsworth judge loner manipulator martyr masochist meddler mediator monger monster non_partisan optimist paragon pedagogue penitent perfectionist plotter poltroon praise_seeker provider rebel rogue soldier stoic survivor sycophant traditionalist thrill_seeker trickster vigilante visionary.
 
-= Sex
-Sex es un atributo que tiene todos los personajes.
-Los valores validos de Sex son: f m.
-
-= Name
-Name es un atributo que tiene todos los personajes.
-Name es de la clase Atributo::Name.
-Los valores posibles de Name para personajes de sex 'f' son: Lucia Maria Martina Paula Daniela Sofia Valeria Carla Sara Alba Julia Noa Emma Claudia Carmen Marta Valentina Irene Adriana Ana Laura Elena Alejandra Ines Marina Vera Candela Laia Ariadna Lola Andrea Rocio Angela Vega Nora Jimena Blanca Alicia Clara Olivia Celia Alma Eva Elsa Leyre Natalia Victoria Isabel Cristina Lara Abril Triana Nuria Aroa Carolina Manuela Chloe Mia Mar Gabriela Mara Africa Iria Naia Helena Paola Noelia Nahia Miriam Salma.
-Los valores posibles de Name para personajes de sex 'm' son: Hugo Daniel Pablo Alejandro Alvaro Adrian David Martin Mario Diego Javier Manuel Lucas Nicolas Marcos Leo Sergio Mateo Izan Alex Iker Marc Jorge Carlos Miguel Antonio Angel Gonzalo Juan Ivan Eric Ruben Samuel Hector Victor Enzo Jose Gabriel Bruno Dario Raul Adam Guillermo Francisco Aaron Jesus Oliver Joel Aitor Pedro Rodrigo Erik Marco Alberto Pau Jaime Asier Luis Rafael Mohamed Dylan Marti Ian Pol Ismael Oscar Andres Alonso Biel Rayan Jan Fernando Thiago Arnau Cristian Gael Ignacio Joan.
 
 = Age
 Age es un atributo que tiene todos los personajes.

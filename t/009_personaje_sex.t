@@ -6,6 +6,7 @@ use Test::Deep;
 use HEUP;
 
 use Util;
+Service::Atributo->init;
 
 describe "Como usuario quiero que el personaje tenga un sex, definido por mi o al random, segun la configuracion" => sub {
   context "DADO un personaje" => sub {
