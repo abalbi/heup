@@ -13,7 +13,7 @@ describe "Como usuario quiero que el personaje tenga una edad, definido por mi o
     Service::Atributo->init;
     my $atributo_age = Service::Atributo->traer('age');
     it "ENTONCES el atributo age debe tener valores entre un numero y otro" => sub {
-      cmp_deeply $atributo_age->posibles, [21..40];
+      cmp_deeply $atributo_age->posibles, array_each(methods('valor', any(21..40)));
     };
   };
   context "DADO un personaje" => sub {

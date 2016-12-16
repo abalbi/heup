@@ -1,7 +1,7 @@
 package Factory::Atributo;
 use strict; 
 use JSON;
-use fields qw(_atributos _stash);
+use fields qw(_atributo _stash);
 use List::MoreUtils qw(uniq);
 our $AUTOLOAD;
 use Data::Dumper;
@@ -17,33 +17,24 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     return $self;
   }
 
-  sub atributos {
+  sub atributo {
     my $self = shift;
-    $self->{_atributos} = {} if !$self->{_atributos};
-    return $self->{_atributos};
+    my $args = shift;
+    $self->{_atributo} = $args if defined $args;
+    return $self->{_atributo};
   }
 
   sub stash {
     my $self = shift;
-    $self->{_stash} = [] if !$self->{_stash};
+    $self->{_stash} = {} if !$self->{_stash};
     return $self->{_stash};
   }
 
-  sub stash_limpiar {
-    my $self = shift;
-    $self->{_stash} = { 
-      este => []
-    };    
-  }
 
-  sub este {
+  sub el_atributo {
     my $self = shift;
     my $key = shift;
-    if(not exists $self->atributos->{$key}) {
-      $self->atributos->{$key} = {key => $key}
-    }
-    $self->stash_limpiar;
-    push @{$self->stash->{este}}, $key;
+    $self->atributo({key => $key});
     $self->stash->{lista_valores} = 'posibles';
     return $self;
   }
@@ -54,9 +45,7 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $res;
     eval "\$res = \{\%\{$string\:\:\}\}";
     if(keys %$res) {
-      foreach my $key (@{$self->stash->{este}}) {
-        $self->atributos->{$key}->{clase} = $string;
-      }
+      $self->atributo->{clase} = $string;
     }
     return $self;
   }
@@ -64,18 +53,14 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
   sub es_requerido {
     my $self = shift;
     my $res;
-    foreach my $key (@{$self->stash->{este}}) {
-      $self->atributos->{$key}->{es_requerido} = 1;
-    }
+    $self->atributo->{es_requerido} = 1;
     return $self;
   }
 
   sub tiene_origen {
     my $self = shift;
     my $src = shift;
-    foreach my $key (@{$self->stash->{este}}) {
-      $self->atributos->{$key}->{src} = $src;
-    }
+    $self->atributo->{src} = $src;
     return $self;
 
   }
@@ -112,12 +97,10 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $heredan_de = $self->stash->{heredan_de};
     $self->lista([$heredan_de]);
     $self->lista($herederos);
-    foreach my $key (@{$self->stash->{este}}) {
-      $self->atributos->{$key}->{herencias} = {} if not exists $self->atributos->{$key}->{herencias};
-      foreach my $heredero (@$herederos) {
-        $self->atributos->{$key}->{herencias}->{$heredero} = [] if not exists $self->atributos->{$key}->{herencias}->{$heredero};
-        push @{$self->atributos->{$key}->{herencias}->{$heredero}}, $heredan_de;
-      }
+    $self->atributo->{herencias} = {} if not exists $self->atributo->{herencias};
+    foreach my $heredero (@$herederos) {
+      $self->atributo->{herencias}->{$heredero} = [] if not exists $self->atributo->{herencias}->{$heredero};
+      push @{$self->atributo->{herencias}->{$heredero}}, $heredan_de;
     }
     return $self;
   }
@@ -126,17 +109,15 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $self = shift;
     my $si_valor = shift;
     my $entonces_hash = shift;
-    foreach my $key (@{$self->stash->{este}}) {
-      $self->atributos->{$key}->{alteraciones} = [] if not exists $self->atributos->{$key}->{alteraciones};
-      foreach my $entonces_key (keys %{$entonces_hash}) {
-        my $entonces_valor = $entonces_hash->{$entonces_key};
-        push @{$self->atributos->{$key}->{alteraciones}}, {
-          si_key => lc $key,
-          si_valor => $si_valor,
-          entonces_key => lc $entonces_key,
-          entonces_valor => $entonces_valor,
-        };                  
-      }
+    $self->atributo->{alteraciones} = [] if not exists $self->atributo->{alteraciones};
+    foreach my $entonces_key (keys %{$entonces_hash}) {
+      my $entonces_valor = $entonces_hash->{$entonces_key};
+      push @{$self->atributo->{alteraciones}}, {
+        si_key => lc $self->atributo->{key},
+        si_valor => $si_valor,
+        entonces_key => lc $entonces_key,
+        entonces_valor => $entonces_valor,
+      };                  
     }    
     return $self;
   }
@@ -145,15 +126,10 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $self = shift;
     my $valores = shift;
     my $lista = $self->stash->{lista_valores};
-    foreach my $key (@{$self->stash->{este}}) {
-      if($self->stash->{para}) {
-        my $para = $self->stash->{para};
-        push @{$self->atributos->{$key}->{$lista}}, map {{ valor => $_ , atributos => {%$para}}} @$valores;
-      } else {
-        $self->atributos->{$key}->{$lista} = [] if not exists $self->atributos->{$key}->{$lista};
-        push @{$self->atributos->{$key}->{$lista}}, @$valores;
-      }
-    }
+    $self->atributo->{$lista} = [] if not exists $self->atributo->{$lista};
+      my $para = {};
+      $para = $self->stash->{para} if keys %{$self->stash->{para}};
+      push @{$self->atributo->{$lista}}, map {Valor->new({ valor => $_ , para_atributos => {%$para}})} @$valores;
   }
 
   sub para {
@@ -166,33 +142,28 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $self = shift;
     my $atributos = [];
     $logger->trace('Hacer Atributo');
-
-    foreach my $key (sort keys %{$self->atributos}) {
-      my $args = $self->atributos->{$key};
-      my $clase = $args->{clase};
-      delete $args->{clase};
-      $clase = 'Atributo' if !$clase;
-      return undef if not defined $args->{key};
-      my $atributo = $clase->new($args);
-      $logger->trace('New Atributo key=', $atributo->key, ' clase=', ref($atributo));
-
-      push @$atributos, $atributo;
-      if(defined Service::Atributo->traer($args->{key})) {
-        my $index = -1;
-        my $i = 0;
-        foreach my $item (@{Service::Atributo->atributos}) {
-          if(defined $item && $item->key eq $atributo->key) {
-            $index = $i;
-            last;
-          }
-          $i++;
+    my $args = $self->atributo;
+    my $clase = $args->{clase};
+    delete $args->{clase};
+    $clase = 'Atributo' if !$clase;
+    return undef if not defined $args->{key};
+    my $atributo = $clase->new($args);
+    $logger->trace('New Atributo key=', $atributo->key, ' clase=', ref($atributo));
+    if(defined Service::Atributo->traer($args->{key})) {
+      my $index = -1;
+      my $i = 0;
+      foreach my $item (@{Service::Atributo->atributos}) {
+        if(defined $item && $item->key eq $atributo->key) {
+          $index = $i;
+          last;
         }
-        Service::Atributo->atributos->[$index] = $atributo;
-      } else {
-        push @{Service::Atributo->atributos}, $atributo;
+        $i++;
       }
+      Service::Atributo->atributos->[$index] = $atributo;
+    } else {
+      push @{Service::Atributo->atributos}, $atributo;
     }
-    $logger->debug(Dumper $self->atributos);
-    return $atributos;
+    $logger->debug(Dumper $self->atributo);
+    return $atributo;
   }
 1;

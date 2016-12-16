@@ -14,9 +14,9 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
 		my $args = shift;
 		my $valores = $self->SUPER::posibles;
 		if($args->{sex}) {
-			$valores = [grep {$_->{atributos}->{sex} eq $args->{sex}} @$valores];
+			$valores = [grep {$_->para_atributos->{sex} eq $args->{sex}} @$valores];
 		}
-		return [map {$_->{valor}} @$valores];
+		return [map {$_} @$valores];
 	}
 
 	sub alguno {

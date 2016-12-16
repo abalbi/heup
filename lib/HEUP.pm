@@ -15,6 +15,7 @@ use Model::Atributo::Concept;
 use Model::Atributo::Name;
 use Model::Personaje;
 use Model::Personaje::Propiedad;
+use Model::Valor;
 use Service::Atributo;
 use Service::Personaje;
 
