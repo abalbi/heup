@@ -75,7 +75,11 @@ our $instancia;
   sub load_etc {
     my $class = shift;
     my $self = __PACKAGE__->instancia;
+<<<<<<< HEAD
     push @{$self->{_tipos}}, Historia::Tipo->new({
+=======
+    push @{$self->{_tipos}}, Tipo->new({
+>>>>>>> 3a17a97b9d5d3dce774d02aeaa1192860d7eb1ab
       key => 'overcoming_the_monster',
       pasos => [
         'Se descubre la amenaza que es <monstruo>, que daña a <victima>',
@@ -85,7 +89,11 @@ our $instancia;
         '<protagonista> vence a <monstruo>',
       ],
     });    
+<<<<<<< HEAD
     push @{$self->{_tipos}}, Historia::Tipo->new({
+=======
+    push @{$self->{_tipos}}, Tipo->new({
+>>>>>>> 3a17a97b9d5d3dce774d02aeaa1192860d7eb1ab
       key => 'rags_to_riches',
       pasos => [
         '<protagonista> esta en un ambiente miserable',
@@ -95,7 +103,11 @@ our $instancia;
         '<protagonista> recupera su alto estatus y a <aliado> esta vez de forma permanente',
       ],
     });    
+<<<<<<< HEAD
     push @{$self->{_tipos}}, Historia::Tipo->new({
+=======
+    push @{$self->{_tipos}}, Tipo->new({
+>>>>>>> 3a17a97b9d5d3dce774d02aeaa1192860d7eb1ab
       key => 'the_quest',
       pasos => [
         '<protagonista> esta en una situacion deplorable',
@@ -105,7 +117,11 @@ our $instancia;
         '<protagonista> consigue la meta',
       ],
     });    
+<<<<<<< HEAD
     push @{$self->{_tipos}}, Historia::Tipo->new({
+=======
+    push @{$self->{_tipos}}, Tipo->new({
+>>>>>>> 3a17a97b9d5d3dce774d02aeaa1192860d7eb1ab
       key => 'voyage_and_return',
       pasos => [
         '<protagonista> esta aburrido y quiere nuevas experiencias',

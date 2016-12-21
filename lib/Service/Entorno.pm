@@ -2,7 +2,7 @@ package Service::Entorno;
 use strict; 
 use JSON;
 use base qw(Service);
-use fields qw(_entornos );
+use fields qw(_entornos);
 our $AUTOLOAD;
 use Data::Dumper;
 use Util;
@@ -61,5 +61,4 @@ our $instancia;
     }
     return $self;
   }
-
 1;

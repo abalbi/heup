@@ -47,7 +47,6 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     my $atributos = $self->atributos;
     foreach my $atributo (@$atributos){
       my $key = $atributo->key;
-      $logger->trace("Aplicando $key");
       my $valor;
       if(not defined $valor) {
         my $argumento = $self->argumentos->{$key};
