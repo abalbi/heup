@@ -2,7 +2,7 @@ package Service::Entorno;
 use strict; 
 use JSON;
 use base qw(Service);
-use fields qw(_entornos);
+use fields qw(_entornos );
 our $AUTOLOAD;
 use Data::Dumper;
 use Util;
@@ -47,6 +47,19 @@ our $instancia;
     $entorno = $constructor->hacer;
     push @{$self->entornos}, $entorno;
     return $entorno;
+  }
+
+  sub hacer_incidentes {
+    my $self = shift;
+    my $entorno = shift;
+    my $personaje = shift;
+    my $cantidad_incidentes = $entorno->personaje_cantidad_incidentes;
+    for (1..$cantidad_incidentes) {
+      my $incidente = Service::Incidente->crear;
+      push @{$personaje->incidentes}, $incidente;
+      push @{$entorno->incidentes}, $incidente;
+    }
+    return $self;
   }
 
 1;

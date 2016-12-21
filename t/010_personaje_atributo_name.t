@@ -8,7 +8,7 @@ use HEUP;
 $Atributo::logger->level('TRACE');
 $Factory::Atributo::logger->level('TRACE');
 $Service::Atributo::logger->level('TRACE');
-$Constructor::logger->level('TRACE');
+$Service::Personaje::Constructor::logger->level('TRACE');
 use Util;
 
 

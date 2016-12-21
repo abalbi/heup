@@ -1,4 +1,4 @@
-package Tipo;
+package Historia::Tipo;
 use strict; 
 use JSON;
 use fields qw(_key _pasos);

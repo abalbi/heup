@@ -1,7 +1,7 @@
 package Personaje;
 use strict; 
 use JSON;
-use fields qw(_propiedades);
+use fields qw(_propiedades _incidentes);
 our $AUTOLOAD;
 use Data::Dumper;
 use Util;
@@ -65,5 +65,11 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
       return 1 if scalar grep {$valor_es eq $_} @{$herencia->{$valor}};
     }
     return 0;    
+  }
+
+  sub incidentes {
+    my $self = shift;
+    $self->{_incidentes} = [] if not defined $self->{_incidentes};
+    return $self->{_incidentes};    
   }
 1;

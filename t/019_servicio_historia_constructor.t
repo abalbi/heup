@@ -5,8 +5,9 @@ use Test::More qw(no_plan);
 use Test::More::Behaviour;
 use HEUP;
 
-$Service::Historia::logger->level('TRACE');
 
+$Service::Historia::logger->level('TRACE');
+Service::Historia->init;
 describe "Como desarrollador quiero que el constructor de historia cree las historias basado en tipos" => sub {
   context "CUANDO ejecuto el init del Servicio de Historia" => sub {
     my $tipo_overcoming_the_monster = Service::Historia->traer('overcoming_the_monster');

@@ -1,7 +1,7 @@
 package Entorno;
 use strict; 
 use JSON;
-use fields qw(_personajes _id);
+use fields qw(_personajes _id _incidentes);
 our $AUTOLOAD;
 use Data::Dumper;
 use Util;
@@ -62,4 +62,15 @@ our $logger = Log::Log4perl->get_logger(__PACKAGE__);
     }
     return $str;
   }
+
+  sub personaje_cantidad_incidentes {
+    return 5;
+  }
+
+  sub incidentes {
+    my $self = shift;
+    $self->{_incidentes} = [] if not defined $self->{_incidentes};
+    return $self->{_incidentes};    
+  }
+
 1;

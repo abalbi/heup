@@ -7,6 +7,10 @@ use HEUP;
 use Data::Dumper;
 use Util;
 
+$Service::Personaje::logger->level('TRACE');
+
+Service::Atributo->init;
+
 describe "Como usuario quiero que el personaje tenga un nombre, definido por mi o al random, segun la configuracion" => sub {
   context "DADO un personaje" => sub {
     my $personaje = Personaje->new;

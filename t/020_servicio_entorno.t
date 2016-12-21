@@ -7,7 +7,7 @@ use Test::Deep;
 use HEUP;
 
 $Service::Historia::logger->level('TRACE');
-
+Service::Historia->init;
 describe "Como desarrollador quiero tener un entorno donde se registren los personajes de las historias que creo" => sub {
   context "CUANDO el crear del Servicio de Entornos" => sub {
     my $entorno = Service::Entorno->crear;

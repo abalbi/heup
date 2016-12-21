@@ -6,6 +6,8 @@ use Test::More::Behaviour;
 use Test::Deep;
 use HEUP;
 
+Service::Incidente->init;
+
 describe "Como usuario quiero que mis personajes se les genere una historia que genere Incidentes en el entorno" => sub {
   context "CUANDO pido al servicio de entornos que cree el transfondo de un personaje en un entorno" => sub {
     my $personaje = Service::Personaje->crear;

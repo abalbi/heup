@@ -7,7 +7,7 @@ use Data::Dumper;
 use HEUP;
 
 use Util;
-$Constructor::logger->level('TRACE');
+$Service::Personaje::Constructor::logger->level('TRACE');
 describe "Como usuario quiero que el personaje tenga una edad, definido por mi o al random" => sub {
   context "CUANDO ejecuto el init del Servicio de Atributo" => sub {
     Service::Atributo->init;
